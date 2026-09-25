@@ -103,11 +103,26 @@
 .banners p { color: var(--muted); font-size: 15.5px; max-width: 240px; margin: 0 auto; }
 
 /* Lorax */
-.lorax-sec { overflow: visible; z-index: 2; }
+.lorax-sec { overflow: visible; overflow-x: clip; z-index: 2; }
 .lorax { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .grove { position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: 36px; }
 .grove .head { width: 150px; height: 150px; image-rendering: pixelated;
   filter: drop-shadow(0 0 1px rgba(170,230,120,.9)) drop-shadow(0 0 10px rgba(120,200,90,.55)) drop-shadow(0 0 26px rgba(120,200,90,.25)); }
+/* Spruce trees around the King, one row of blocks per line */
+.spruce { --b: 24px; position: absolute; bottom: 8px; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 10px 12px rgba(0,0,0,.45)); }
+.spruce.far { filter: brightness(.55) saturate(.8); }
+.spruce i { position: relative; height: var(--b); }
+.spruce i::before, .spruce i::after { content: ""; position: absolute; inset: 0; }
+.spruce i::before {
+  background: url(../blocks/spruce_leaves.png) calc(var(--b) / 2) calc(var(--b) / 2.3)/var(--b), #34543A; background-blend-mode: multiply;
+  -webkit-mask: url(../blocks/spruce_leaves.png) calc(var(--b) / 2) calc(var(--b) / 2.3)/var(--b); mask: url(../blocks/spruce_leaves.png) calc(var(--b) / 2) calc(var(--b) / 2.3)/var(--b);
+}
+.spruce i::after {
+  background: url(../blocks/spruce_leaves.png) 0 0/var(--b), #619961; background-blend-mode: multiply;
+  -webkit-mask: url(../blocks/spruce_leaves.png) 0 0/var(--b); mask: url(../blocks/spruce_leaves.png) 0 0/var(--b);
+}
+.spruce i.log { width: var(--b); background: url(../blocks/spruce_log.png) 0 0/var(--b); }
+.spruce i.log::before, .spruce i.log::after { content: none; }
 .nameplate { font-family: Monocraft; font-size: 18px; color: #fff; background: rgba(0,0,0,.4); padding: 2px 10px; text-shadow: 2px 2px 0 #3F3F3F; }
 .grove .shadow { width: 120px; height: 12px; margin: 20px auto 0; background: rgba(0,0,0,.35); filter: blur(3px); }
 .lorax h2 { font-size: clamp(28px, 3.8vw, 44px); margin-bottom: 16px; }
@@ -176,6 +191,8 @@
   .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 140px; }
   .gallery .map-tile:first-child { grid-row: auto; grid-column: span 2; }
   .gallery .map-tile:nth-child(n+4) { display: none; }
+  .spruce { --b: 16px; }
+  .spruce.far { display: none; }
   .banners { grid-template-columns: 1fr 1fr; gap: 48px 24px; }
 }
 @media (max-width: 560px) {

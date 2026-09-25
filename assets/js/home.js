@@ -1,3 +1,20 @@
+// Spruce trees next to the King's head. Each number is one row of leaf blocks, 0 is a log.
+{
+  const shapes = {
+    tall: [1, 1, 3, 1, 3, 5, 3, 5, 7, 0, 0],
+    medium: [1, 3, 1, 3, 5, 3, 5, 0, 0],
+    small: [1, 3, 1, 3, 5, 0],
+  };
+  for (const tree of document.querySelectorAll(".spruce")) {
+    for (const width of shapes[tree.dataset.shape]) {
+      const row = document.createElement("i");
+      if (width) row.style.width = `calc(var(--b) * ${width})`;
+      else row.className = "log";
+      tree.append(row);
+    }
+  }
+}
+
 // Fox walking along the bottom of the hero. It is built in CSS 3D from the fox model's boxes
 // (sizes in 1/16 block, y pointing down) and every face uses the matching part of fox.png.
 {
