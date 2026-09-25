@@ -50,7 +50,11 @@
       <h2>Who sells what</h2>
       <p>Prices are in diamonds unless a shop says otherwise.</p>
     </div>
-    <div id="shop-list" class="shop-list reveal">
+    <div class="filter reveal" hidden>
+      <input type="search" data-filter="shops" placeholder="Find a shop, owner or item" aria-label="Find a shop" autocomplete="off">
+      <p class="filter-empty" data-filter-empty="shops" hidden>No shop found.</p>
+    </div>
+    <div id="shop-list" class="shop-list reveal" data-filter-group="shops">
       <div class="empty">
         <div class="node"><img class="item icon" src="assets/items/emerald.png" alt=""></div>
         <h3>The directory is being stocked</h3>

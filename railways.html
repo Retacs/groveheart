@@ -61,10 +61,14 @@
       <h2>Two levels, lots of lines</h2>
       <p>The three big networks run on <span class="mc">/dest</span>: type the command for where you want to go, then get in a minecart and ride. On the lowest level, the Groverail platforms add direct lines to our neighbours. The book or sign at each platform tells you where it goes.</p>
     </div>
+    <div class="filter reveal">
+      <input type="search" data-filter="rail" placeholder="Find a station, e.g. Avalon" aria-label="Find a station" autocomplete="off">
+      <p class="filter-empty" data-filter-empty="rail" hidden>No station found. Check the spelling, or look at the books at the platforms.</p>
+    </div>
   </div>
 </section>
 
-<section class="network">
+<section class="network" data-filter-scope>
   <div class="wrap narrow">
     <div class="section-head reveal">
       <div class="kicker">Office of Transit</div>
@@ -76,7 +80,7 @@
       </div>
     </div>
     <div class="table-scroll reveal">
-      <table class="mc-table rail-table">
+      <table class="mc-table rail-table" data-filter-group="rail">
         <thead><tr><th>Station</th><th>Command</th><th></th></tr></thead>
         <tbody>
           <tr><td>City</td><td class="num">/dest City</td><td><button class="copy" type="button" data-copy="/dest City">Copy</button></td></tr>
@@ -100,7 +104,7 @@
   </div>
 </section>
 
-<section class="network">
+<section class="network" data-filter-scope>
   <div class="wrap narrow">
     <div class="section-head reveal">
       <div class="kicker">Ministry of Transport</div>
@@ -112,7 +116,7 @@
       </div>
     </div>
     <div class="table-scroll reveal">
-      <table class="mc-table rail-table">
+      <table class="mc-table rail-table" data-filter-group="rail">
         <thead><tr><th>Station</th><th>Command</th><th></th></tr></thead>
         <tbody>
           <tr class="district-row"><td colspan="3" style="--c:#4CBF4C">Bay Rail District</td></tr>
@@ -176,7 +180,7 @@
   </div>
 </section>
 
-<section class="network">
+<section class="network" data-filter-scope>
   <div class="wrap narrow">
     <div class="section-head reveal">
       <div class="kicker">Ministry of Transport</div>
@@ -188,7 +192,7 @@
       </div>
     </div>
     <div class="table-scroll reveal">
-      <table class="mc-table rail-table">
+      <table class="mc-table rail-table" data-filter-group="rail">
         <thead><tr><th>Station</th><th>Command</th><th></th></tr></thead>
         <tbody>
           <tr><td>Groveheart</td><td class="num">/dest Groveheart</td><td><button class="copy" type="button" data-copy="/dest Groveheart">Copy</button></td></tr>
@@ -208,7 +212,7 @@
   </div>
 </section>
 
-<section class="network">
+<section class="network" data-filter-scope>
   <div class="wrap narrow">
     <div class="section-head reveal">
       <div class="kicker">Groverail &middot; lowest level</div>
@@ -216,7 +220,7 @@
       <p>At the very bottom of the station are the Groverail platforms. Direct lines need no command at all: get in and you arrive at the other end.</p>
     </div>
     <div class="table-scroll reveal">
-      <table class="mc-table rail-table">
+      <table class="mc-table rail-table" data-filter-group="rail">
         <thead><tr><th>Direct line</th><th>Travel time</th></tr></thead>
         <tbody>
           <tr><td>Brunsvik</td><td class="num">2 min</td></tr>
@@ -228,7 +232,7 @@
       </table>
     </div>
     <div class="table-scroll reveal" style="margin-top:40px">
-      <table class="mc-table rail-table">
+      <table class="mc-table rail-table" data-filter-group="rail">
         <thead><tr><th>Line</th><th>Command</th><th></th></tr></thead>
         <tbody>
           <tr class="district-row"><td colspan="3" style="--c:#4CBF4C">Saoirse Line</td></tr>
