@@ -196,7 +196,7 @@ const search = {
     await Promise.all(pages.map(async page => {
       let doc;
       try {
-        const html = await (await fetch(page.url)).text();
+        const html = await (await fetch(page.url, { cache: "no-cache" })).text();
         doc = new DOMParser().parseFromString(html, "text/html");
       } catch {
         return;

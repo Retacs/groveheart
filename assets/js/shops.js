@@ -13,7 +13,7 @@ async function loadShops() {
   const list = document.getElementById("shop-list");
   let shops;
   try {
-    shops = await (await fetch("assets/data/shops.json")).json();
+    shops = await (await fetch("assets/data/shops.json", { cache: "no-cache" })).json();
   } catch {
     return;
   }

@@ -18,6 +18,11 @@ Plain HTML, CSS and JavaScript, no build step. Open `index.html` through any sta
   [{ "src": "assets/gallery/capital.jpg", "caption": "The capital at sunset" }]
   ```
 
+## Before committing
+
+Run `python3 tools/cache-bust.py`. It adds a version tag to every CSS, JS and image link,
+so visitors get changed files immediately instead of an old cached copy.
+
 ## Credits
 
 - Fonts: [Monocraft](https://github.com/IdreesInc/Monocraft) and [Inter](https://github.com/rsms/inter), both SIL Open Font License.
