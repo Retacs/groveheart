@@ -96,7 +96,7 @@ document.addEventListener("click", async event => {
 for (const canopy of document.querySelectorAll(".canopy")) {
   let seed = 3;
   const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const tints = ["#3A6A22", "#34611F", "#41752A", "#2F5A1C", "#3D6E25"];
+  const tints = ["#3F6B45", "#3A6340", "#466F48", "#35593A", "#4A7550"];
   const columns = Math.ceil(Math.max(innerWidth, screen.width || 0, 3840) / 40) + 1;
 
   for (const [name, min, max] of [["back", 2, 4], ["front", 1, 3]]) {
