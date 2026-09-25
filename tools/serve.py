@@ -11,4 +11,5 @@ class CleanUrls(http.server.SimpleHTTPRequestHandler):
             return str(local.with_suffix(".html"))
         return str(local)
 
-http.server.ThreadingHTTPServer(("", 8080), CleanUrls).serve_forever()
+# Only reachable from this computer, not from other devices on the network
+http.server.ThreadingHTTPServer(("127.0.0.1", 8080), CleanUrls).serve_forever()
