@@ -268,11 +268,20 @@ section.tight { padding: 70px 0; }
 .timeline h3 { font-size: 18px; margin-bottom: 6px; }
 .timeline p { color: var(--muted); font-size: 15px; }
 
-/* Railway lines */
-.lines { display: grid; gap: 36px; }
-.line { display: flex; gap: 24px; align-items: flex-start; }
-.line h3 { font-size: 20px; margin-bottom: 6px; }
-.line p { color: var(--muted); margin-bottom: 12px; }
+/* Rail networks */
+.network + .network { margin-top: 48px; }
+.network > p { margin-bottom: 18px; }
+.network code, .how code { font: 14px Monocraft, monospace; color: #1F4D2B; background: rgba(31,77,43,.1); padding: 2px 6px; }
+.how { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-bottom: 20px; }
+.how .label { display: block; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #8A6A2C; margin-bottom: 4px; }
+.stations { list-style: none; margin: 0; padding: 0; columns: 3 150px; column-gap: 24px; font: 14px Monocraft, monospace; }
+.stations li { color: #2B2014; break-inside: avoid; padding: 3px 0; }
+.stations li::before { content: "- "; color: #8A6A2C; }
+.stations small { font: 12px Inter, sans-serif; color: #6F604A; }
+.districts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px 28px; }
+.district h4 { font: 15px Monocraft, monospace; margin: 0 0 2px; font-weight: normal; }
+.district .cmd { font: 12px Monocraft, monospace; color: #6F604A; margin-bottom: 6px; }
+.district .stations { columns: 1; }
 
 /* Shop directory */
 .shop-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 36px; }
