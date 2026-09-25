@@ -126,21 +126,17 @@ section.tight { padding: 70px 0; }
 /* Leaf canopy */
 .has-canopy { padding-top: 170px; }
 .canopy { position: absolute; left: 0; right: 0; top: 0; height: 200px; pointer-events: none; overflow: hidden;
-          -webkit-mask: linear-gradient(#000 55%, transparent); mask: linear-gradient(#000 55%, transparent); }
+          -webkit-mask: linear-gradient(#000 60%, transparent); mask: linear-gradient(#000 60%, transparent); }
 .canopy .layer { position: absolute; inset: 0; }
-.canopy .back { left: -20px; filter: brightness(.55) blur(.6px) drop-shadow(0 8px 10px rgba(0,0,0,.6)); }
-.canopy .front { filter: drop-shadow(0 10px 8px rgba(0,0,0,.55)) drop-shadow(0 2px 1px rgba(0,0,0,.4)); }
+.canopy .back { filter: brightness(.5) saturate(.85); }
+.canopy .front { filter: drop-shadow(0 10px 10px rgba(0,0,0,.5)); }
+/* The texture is pre-scaled with hard edges, so it stays sharp on every screen */
 .canopy i {
-  position: absolute; top: 0; width: 40px; transform-origin: top center; image-rendering: pixelated;
-  background: url(../blocks/spruce_leaves.png) 0 0/40px, var(--tint, #3F6B45); background-blend-mode: multiply;
-  -webkit-mask: url(../blocks/spruce_leaves.png) 0 0/40px; mask: url(../blocks/spruce_leaves.png) 0 0/40px;
-  animation: rustle 6s ease-in-out infinite;
+  position: absolute; top: 0; width: 48px;
+  background: url(../blocks/spruce_leaves.png) 0 0/48px, #46724B; background-blend-mode: multiply;
+  -webkit-mask: url(../blocks/spruce_leaves.png) 0 0/48px; mask: url(../blocks/spruce_leaves.png) 0 0/48px;
 }
-.canopy i::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(rgba(255,220,150,.28), rgba(255,220,150,0) 30%, rgba(0,0,0,0) 50%, rgba(0,0,0,.5));
-}
-@keyframes rustle { 0%, 100% { transform: translate(0, 0) rotate(0); } 50% { transform: translate(.5px, 1.5px) rotate(.5deg); } }
+.canopy i::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent calc(100% - 48px), rgba(0,0,0,.4)); }
 
 /* Inventory slot */
 .node {
