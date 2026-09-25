@@ -124,7 +124,7 @@ if ("IntersectionObserver" in window) {
         observer.unobserve(entry.target);
       }
     }
-  }, { threshold: 0.2 });
+  }, { rootMargin: "0px 0px -10% 0px" });
   revealed.forEach(node => observer.observe(node));
 } else {
   revealed.forEach(node => node.classList.add("shown"));

@@ -116,7 +116,8 @@ section.tight { padding: 70px 0; }
 .section-head { text-align: center; max-width: 780px; margin: 0 auto 56px; }
 .section-head h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
 .section-head p { color: var(--muted); font-size: 18px; max-width: 660px; margin-left: auto; margin-right: auto; }
-.kicker { font-family: Monocraft; font-size: 14px; letter-spacing: .06em; color: var(--gold); text-shadow: 2px 2px 0 #3F2A00; margin-bottom: 12px; }
+/* Small orange labels: a stepped 3D edge plus a soft glow */
+.kicker { font-family: Monocraft; font-size: 14px; letter-spacing: .06em; color: var(--gold); text-shadow: 1px 1px 0 #C27A00, 2px 2px 0 #7A4B00, 3px 3px 0 #3F2A00, 0 0 10px rgba(255,170,0,.45), 0 0 22px rgba(255,140,0,.2); margin-bottom: 12px; }
 .link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 15px; }
 .link:hover { color: var(--path); }
 .link::after { content: " →"; display: inline-block; transition: transform .15s; }
@@ -158,9 +159,13 @@ section.tight { padding: 70px 0; }
 
 /* Item frame */
 .frame {
-  width: 120px; height: 120px; display: grid; place-items: center; image-rendering: pixelated;
-  background: url(../blocks/item_frame.png) 0 0/100% 100%; filter: brightness(.8) saturate(.85);
+  position: relative; width: 128px; height: 128px; display: grid; place-items: center;
   box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+/* Only the wooden frame is dimmed, so the item inside keeps its full colour */
+.frame::before {
+  content: ""; position: absolute; inset: 0; image-rendering: pixelated;
+  background: url(../blocks/item_frame.png) 0 0/100% 100%; filter: brightness(.8) saturate(.85);
 }
 
 /* Map in an item frame */
@@ -237,7 +242,7 @@ section.tight { padding: 70px 0; }
                  background: linear-gradient(rgba(210,176,116,.2), #D2B074, rgba(244,235,207,.8)); }
 .quest li { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 44px; position: relative; }
 .quest li:last-child { margin-bottom: 0; }
-.quest .num { font: 13px Monocraft, monospace; color: var(--gold); text-shadow: 2px 2px 0 #3F2A00; }
+.quest .num { font: 13px Monocraft, monospace; color: var(--gold); text-shadow: 1px 1px 0 #C27A00, 2px 2px 0 #7A4B00, 3px 3px 0 #3F2A00, 0 0 10px rgba(255,170,0,.45), 0 0 22px rgba(255,140,0,.2); }
 .quest h3 { font-size: 21px; margin: 4px 0 10px; }
 .quest p { color: var(--muted); font-size: 17px; max-width: 620px; }
 .quest p a { color: var(--path); }
