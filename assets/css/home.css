@@ -77,10 +77,18 @@
 
 /* Roadmap */
 .road { position: relative; height: 420px; }
+.road .scenery {
+  position: absolute; left: 50%; top: -90px; width: 100vw; height: calc(100% + 150px); transform: translateX(-50%); pointer-events: none;
+  -webkit-mask: linear-gradient(transparent, #000 30%, #000 80%, transparent); mask: linear-gradient(transparent, #000 30%, #000 80%, transparent);
+}
+.scenery .far { fill: #1B3026; }
+.scenery .snow { fill: #2C4438; }
+.scenery .near { fill: #172A20; }
+.scenery .trees { fill: #0F1C15; }
 .road svg.trail { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .trail path { fill: none; vector-effect: non-scaling-stroke; }
 .trail .guide { stroke: none; }
-.trail .ghost { stroke: rgba(210,176,116,.07); stroke-width: 44; stroke-linecap: round; }
+.trail .ghost { stroke: rgba(210,176,116,.06); stroke-width: 30; stroke-linecap: round; }
 .trail .ties { stroke: #6B4A26; stroke-width: 18; stroke-dasharray: 4 7; }
 .trail .rails { stroke: #B4B4B4; stroke-width: 13; }
 .trail .draw { stroke: #fff; stroke-width: 20; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s cubic-bezier(.6,0,.3,1); }
