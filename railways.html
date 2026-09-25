@@ -61,8 +61,12 @@
       <h2>Three networks, one command</h2>
       <p>Every line at the station runs on <span class="mc">/dest</span>. Type the command for where you want to go, then get in a minecart and ride. The book at each platform lists all of its stations.</p>
     </div>
+  </div>
+</section>
 
-    <div class="network book reveal">
+<section class="network">
+  <div class="wrap narrow">
+    <div class="section-head reveal">
       <div class="kicker">Office of Transit</div>
       <h2>The Bayway</h2>
       <p>Groveheart's own network, linking the capital with the towns and settlements of the kingdom.</p>
@@ -70,57 +74,111 @@
         <div><span class="label">Ride</span><code>/dest &lt;station&gt;</code></div>
         <div><span class="label">Back to the station</span><code>/dest City</code></div>
       </div>
-      <ul class="stations"><li>City</li><li>SpudCreek</li><li>Wheat</li><li>Bayland</li><li>Snow</li><li>Brokvein</li><li>Nain</li><li>Elwyn</li><li>CrowPeak</li><li>Taconia</li><li>NewSurmadri</li><li>Wellington</li><li>Kastrup</li><li>Elyras</li><li>PotatoBay</li></ul>
     </div>
+    <div class="table-scroll reveal">
+      <table class="mc-table rail-table">
+        <thead><tr><th>Station</th><th>Command</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>City</td><td class="num">/dest City</td><td><button class="copy" type="button" data-copy="/dest City">Copy</button></td></tr>
+          <tr><td>SpudCreek</td><td class="num">/dest SpudCreek</td><td><button class="copy" type="button" data-copy="/dest SpudCreek">Copy</button></td></tr>
+          <tr><td>Wheat</td><td class="num">/dest Wheat</td><td><button class="copy" type="button" data-copy="/dest Wheat">Copy</button></td></tr>
+          <tr><td>Bayland</td><td class="num">/dest Bayland</td><td><button class="copy" type="button" data-copy="/dest Bayland">Copy</button></td></tr>
+          <tr><td>Snow</td><td class="num">/dest Snow</td><td><button class="copy" type="button" data-copy="/dest Snow">Copy</button></td></tr>
+          <tr><td>Brokvein</td><td class="num">/dest Brokvein</td><td><button class="copy" type="button" data-copy="/dest Brokvein">Copy</button></td></tr>
+          <tr><td>Nain</td><td class="num">/dest Nain</td><td><button class="copy" type="button" data-copy="/dest Nain">Copy</button></td></tr>
+          <tr><td>Elwyn</td><td class="num">/dest Elwyn</td><td><button class="copy" type="button" data-copy="/dest Elwyn">Copy</button></td></tr>
+          <tr><td>CrowPeak</td><td class="num">/dest CrowPeak</td><td><button class="copy" type="button" data-copy="/dest CrowPeak">Copy</button></td></tr>
+          <tr><td>Taconia</td><td class="num">/dest Taconia</td><td><button class="copy" type="button" data-copy="/dest Taconia">Copy</button></td></tr>
+          <tr><td>NewSurmadri</td><td class="num">/dest NewSurmadri</td><td><button class="copy" type="button" data-copy="/dest NewSurmadri">Copy</button></td></tr>
+          <tr><td>Wellington</td><td class="num">/dest Wellington</td><td><button class="copy" type="button" data-copy="/dest Wellington">Copy</button></td></tr>
+          <tr><td>Kastrup</td><td class="num">/dest Kastrup</td><td><button class="copy" type="button" data-copy="/dest Kastrup">Copy</button></td></tr>
+          <tr><td>Elyras</td><td class="num">/dest Elyras</td><td><button class="copy" type="button" data-copy="/dest Elyras">Copy</button></td></tr>
+          <tr><td>PotatoBay</td><td class="num">/dest PotatoBay</td><td><button class="copy" type="button" data-copy="/dest PotatoBay">Copy</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-    <div class="network book reveal">
+<section class="network">
+  <div class="wrap narrow">
+    <div class="section-head reveal">
       <div class="kicker">Ministry of Transport</div>
       <h2>Rail districts</h2>
-      <p>The big network across the map, split into districts. Name the district first, then the station, for example <code>/dest east Avalon</code>.</p>
+      <p>The big network across the map, split into districts. Name the district first, then the station.</p>
       <div class="how">
         <div><span class="label">Ride</span><code>/dest &lt;district&gt; &lt;station&gt;</code></div>
         <div><span class="label">Back to the station</span><code>/dest Bay Groveheart</code></div>
       </div>
-      <div class="districts">
-          <div class="district">
-            <h4 style="color:#2E8B2E">Bay Rail District</h4>
-            <p class="cmd">/dest bay &lt;station&gt;</p>
-            <ul class="stations"><li>Groveheart</li><li>Withervale</li><li>Vermont</li><li>NewHaven</li><li>Complex</li><li>Voldi</li><li>Surmadri</li><li>Perris</li><li>Vallstena</li><li>Prosperia</li></ul>
-          </div>
-          <div class="district">
-            <h4 style="color:#1E9C9C">East Rail District</h4>
-            <p class="cmd">/dest east &lt;station&gt;</p>
-            <ul class="stations"><li>Ostersund</li><li>Dalland</li><li>Maugate</li><li>Kamakura</li><li>Halland</li><li>Venozia</li><li>Alx</li><li>Avalon</li><li>Azure</li><li>Rayos</li><li>Vanaheim</li></ul>
-          </div>
-          <div class="district">
-            <h4 style="color:#B3261E">Imperial Rail District</h4>
-            <p class="cmd">/dest imperial &lt;station&gt;</p>
-            <ul class="stations"><li>NewCallisto</li><li>Feline</li><li>Aethia</li><li>Godhaven</li><li>PrideRock</li><li>Soderrike <small>(Sheleg, Kittenburg, srcity)</small></li><li>Kraftsborg <small>(Dampool, Felsenheim, Nordhavn)</small></li><li>Nalora</li><li>Nora Avilla</li><li>Regensburg</li><li>Nyverk</li><li>Archeron</li><li>Florabis</li></ul>
-          </div>
-          <div class="district">
-            <h4 style="color:#D9822B">Karydia Rail District</h4>
-            <p class="cmd">/dest karydia &lt;station&gt;</p>
-            <ul class="stations"><li>Kilahijo</li><li>SanRafael</li><li>Maygouw Arlington</li><li>Unity</li><li>Carolina</li><li>Icarus</li><li>Reggio</li></ul>
-          </div>
-          <div class="district">
-            <h4 style="color:#5B5BD6">Southsea Rail District</h4>
-            <p class="cmd">/dest southsea &lt;station&gt;</p>
-            <ul class="stations"><li>Freeport</li><li>Grenada</li><li>Myra</li><li>Arvalia</li></ul>
-          </div>
-          <div class="district">
-            <h4 style="color:#D94F5C">Founders Rail District</h4>
-            <p class="cmd">/dest founders &lt;station&gt;</p>
-            <ul class="stations"><li>NorthAfrica</li></ul>
-          </div>
-          <div class="district">
-            <h4 style="color:#2FB5C8">Artic Rail District</h4>
-            <p class="cmd">/dest artic &lt;station&gt;</p>
-            <ul class="stations"><li>Anvard</li><li>Vale</li></ul>
-          </div>
-      </div>
     </div>
+    <div class="table-scroll reveal">
+      <table class="mc-table rail-table">
+        <thead><tr><th>Station</th><th>Command</th><th></th></tr></thead>
+        <tbody>
+          <tr class="district-row"><td colspan="3" style="--c:#4CBF4C">Bay Rail District</td></tr>
+          <tr><td>Groveheart</td><td class="num">/dest bay Groveheart</td><td><button class="copy" type="button" data-copy="/dest bay Groveheart">Copy</button></td></tr>
+          <tr><td>Withervale</td><td class="num">/dest bay Withervale</td><td><button class="copy" type="button" data-copy="/dest bay Withervale">Copy</button></td></tr>
+          <tr><td>Vermont</td><td class="num">/dest bay Vermont</td><td><button class="copy" type="button" data-copy="/dest bay Vermont">Copy</button></td></tr>
+          <tr><td>NewHaven</td><td class="num">/dest bay NewHaven</td><td><button class="copy" type="button" data-copy="/dest bay NewHaven">Copy</button></td></tr>
+          <tr><td>Complex</td><td class="num">/dest bay Complex</td><td><button class="copy" type="button" data-copy="/dest bay Complex">Copy</button></td></tr>
+          <tr><td>Voldi</td><td class="num">/dest bay Voldi</td><td><button class="copy" type="button" data-copy="/dest bay Voldi">Copy</button></td></tr>
+          <tr><td>Surmadri</td><td class="num">/dest bay Surmadri</td><td><button class="copy" type="button" data-copy="/dest bay Surmadri">Copy</button></td></tr>
+          <tr><td>Perris</td><td class="num">/dest bay Perris</td><td><button class="copy" type="button" data-copy="/dest bay Perris">Copy</button></td></tr>
+          <tr><td>Vallstena</td><td class="num">/dest bay Vallstena</td><td><button class="copy" type="button" data-copy="/dest bay Vallstena">Copy</button></td></tr>
+          <tr><td>Prosperia</td><td class="num">/dest bay Prosperia</td><td><button class="copy" type="button" data-copy="/dest bay Prosperia">Copy</button></td></tr>
+          <tr class="district-row"><td colspan="3" style="--c:#3FC9C9">East Rail District</td></tr>
+          <tr><td>Ostersund</td><td class="num">/dest east Ostersund</td><td><button class="copy" type="button" data-copy="/dest east Ostersund">Copy</button></td></tr>
+          <tr><td>Dalland</td><td class="num">/dest east Dalland</td><td><button class="copy" type="button" data-copy="/dest east Dalland">Copy</button></td></tr>
+          <tr><td>Maugate</td><td class="num">/dest east Maugate</td><td><button class="copy" type="button" data-copy="/dest east Maugate">Copy</button></td></tr>
+          <tr><td>Kamakura</td><td class="num">/dest east Kamakura</td><td><button class="copy" type="button" data-copy="/dest east Kamakura">Copy</button></td></tr>
+          <tr><td>Halland</td><td class="num">/dest east Halland</td><td><button class="copy" type="button" data-copy="/dest east Halland">Copy</button></td></tr>
+          <tr><td>Venozia</td><td class="num">/dest east Venozia</td><td><button class="copy" type="button" data-copy="/dest east Venozia">Copy</button></td></tr>
+          <tr><td>Alx</td><td class="num">/dest east Alx</td><td><button class="copy" type="button" data-copy="/dest east Alx">Copy</button></td></tr>
+          <tr><td>Avalon</td><td class="num">/dest east Avalon</td><td><button class="copy" type="button" data-copy="/dest east Avalon">Copy</button></td></tr>
+          <tr><td>Azure</td><td class="num">/dest east Azure</td><td><button class="copy" type="button" data-copy="/dest east Azure">Copy</button></td></tr>
+          <tr><td>Rayos</td><td class="num">/dest east Rayos</td><td><button class="copy" type="button" data-copy="/dest east Rayos">Copy</button></td></tr>
+          <tr><td>Vanaheim</td><td class="num">/dest east Vanaheim</td><td><button class="copy" type="button" data-copy="/dest east Vanaheim">Copy</button></td></tr>
+          <tr class="district-row"><td colspan="3" style="--c:#E5534B">Imperial Rail District</td></tr>
+          <tr><td>NewCallisto</td><td class="num">/dest imperial NewCallisto</td><td><button class="copy" type="button" data-copy="/dest imperial NewCallisto">Copy</button></td></tr>
+          <tr><td>Feline</td><td class="num">/dest imperial Feline</td><td><button class="copy" type="button" data-copy="/dest imperial Feline">Copy</button></td></tr>
+          <tr><td>Aethia</td><td class="num">/dest imperial Aethia</td><td><button class="copy" type="button" data-copy="/dest imperial Aethia">Copy</button></td></tr>
+          <tr><td>Godhaven</td><td class="num">/dest imperial Godhaven</td><td><button class="copy" type="button" data-copy="/dest imperial Godhaven">Copy</button></td></tr>
+          <tr><td>PrideRock</td><td class="num">/dest imperial PrideRock</td><td><button class="copy" type="button" data-copy="/dest imperial PrideRock">Copy</button></td></tr>
+          <tr><td>Soderrike <small>with Sheleg, Kittenburg, srcity</small></td><td class="num">/dest imperial Soderrike</td><td><button class="copy" type="button" data-copy="/dest imperial Soderrike">Copy</button></td></tr>
+          <tr><td>Kraftsborg <small>with Dampool, Felsenheim, Nordhavn</small></td><td class="num">/dest imperial Kraftsborg</td><td><button class="copy" type="button" data-copy="/dest imperial Kraftsborg">Copy</button></td></tr>
+          <tr><td>Nalora</td><td class="num">/dest imperial Nalora</td><td><button class="copy" type="button" data-copy="/dest imperial Nalora">Copy</button></td></tr>
+          <tr><td>Nora Avilla</td><td class="num">/dest imperial Nora Avilla</td><td><button class="copy" type="button" data-copy="/dest imperial Nora Avilla">Copy</button></td></tr>
+          <tr><td>Regensburg</td><td class="num">/dest imperial Regensburg</td><td><button class="copy" type="button" data-copy="/dest imperial Regensburg">Copy</button></td></tr>
+          <tr><td>Nyverk</td><td class="num">/dest imperial Nyverk</td><td><button class="copy" type="button" data-copy="/dest imperial Nyverk">Copy</button></td></tr>
+          <tr><td>Archeron</td><td class="num">/dest imperial Archeron</td><td><button class="copy" type="button" data-copy="/dest imperial Archeron">Copy</button></td></tr>
+          <tr><td>Florabis</td><td class="num">/dest imperial Florabis</td><td><button class="copy" type="button" data-copy="/dest imperial Florabis">Copy</button></td></tr>
+          <tr class="district-row"><td colspan="3" style="--c:#F0A04B">Karydia Rail District</td></tr>
+          <tr><td>Kilahijo</td><td class="num">/dest karydia Kilahijo</td><td><button class="copy" type="button" data-copy="/dest karydia Kilahijo">Copy</button></td></tr>
+          <tr><td>SanRafael</td><td class="num">/dest karydia SanRafael</td><td><button class="copy" type="button" data-copy="/dest karydia SanRafael">Copy</button></td></tr>
+          <tr><td>Maygouw Arlington</td><td class="num">/dest karydia Maygouw Arlington</td><td><button class="copy" type="button" data-copy="/dest karydia Maygouw Arlington">Copy</button></td></tr>
+          <tr><td>Unity</td><td class="num">/dest karydia Unity</td><td><button class="copy" type="button" data-copy="/dest karydia Unity">Copy</button></td></tr>
+          <tr><td>Carolina</td><td class="num">/dest karydia Carolina</td><td><button class="copy" type="button" data-copy="/dest karydia Carolina">Copy</button></td></tr>
+          <tr><td>Icarus</td><td class="num">/dest karydia Icarus</td><td><button class="copy" type="button" data-copy="/dest karydia Icarus">Copy</button></td></tr>
+          <tr><td>Reggio</td><td class="num">/dest karydia Reggio</td><td><button class="copy" type="button" data-copy="/dest karydia Reggio">Copy</button></td></tr>
+          <tr class="district-row"><td colspan="3" style="--c:#8C8CF2">Southsea Rail District</td></tr>
+          <tr><td>Freeport</td><td class="num">/dest southsea Freeport</td><td><button class="copy" type="button" data-copy="/dest southsea Freeport">Copy</button></td></tr>
+          <tr><td>Grenada</td><td class="num">/dest southsea Grenada</td><td><button class="copy" type="button" data-copy="/dest southsea Grenada">Copy</button></td></tr>
+          <tr><td>Myra</td><td class="num">/dest southsea Myra</td><td><button class="copy" type="button" data-copy="/dest southsea Myra">Copy</button></td></tr>
+          <tr><td>Arvalia</td><td class="num">/dest southsea Arvalia</td><td><button class="copy" type="button" data-copy="/dest southsea Arvalia">Copy</button></td></tr>
+          <tr class="district-row"><td colspan="3" style="--c:#F07A86">Founders Rail District</td></tr>
+          <tr><td>NorthAfrica</td><td class="num">/dest founders NorthAfrica</td><td><button class="copy" type="button" data-copy="/dest founders NorthAfrica">Copy</button></td></tr>
+          <tr class="district-row"><td colspan="3" style="--c:#5FD3E0">Artic Rail District</td></tr>
+          <tr><td>Anvard</td><td class="num">/dest artic Anvard</td><td><button class="copy" type="button" data-copy="/dest artic Anvard">Copy</button></td></tr>
+          <tr><td>Vale</td><td class="num">/dest artic Vale</td><td><button class="copy" type="button" data-copy="/dest artic Vale">Copy</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-    <div class="network book reveal">
+<section class="network">
+  <div class="wrap narrow">
+    <div class="section-head reveal">
       <div class="kicker">Ministry of Transport</div>
       <h2>The Sophline</h2>
       <p>An international line across the eastern side of the map.</p>
@@ -128,9 +186,25 @@
         <div><span class="label">Ride</span><code>/dest &lt;station&gt;</code></div>
         <div><span class="label">Back to the station</span><code>/dest Groveheart</code></div>
       </div>
-      <ul class="stations"><li>Groveheart</li><li>Salerno</li><li>NewCallisto</li><li>Fractured</li><li>Arx</li><li>Kitsune</li><li>CDM</li><li>Nara</li><li>Whiskia</li><li>Orakuru</li><li>Karasu</li></ul>
     </div>
-
+    <div class="table-scroll reveal">
+      <table class="mc-table rail-table">
+        <thead><tr><th>Station</th><th>Command</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Groveheart</td><td class="num">/dest Groveheart</td><td><button class="copy" type="button" data-copy="/dest Groveheart">Copy</button></td></tr>
+          <tr><td>Salerno</td><td class="num">/dest Salerno</td><td><button class="copy" type="button" data-copy="/dest Salerno">Copy</button></td></tr>
+          <tr><td>NewCallisto</td><td class="num">/dest NewCallisto</td><td><button class="copy" type="button" data-copy="/dest NewCallisto">Copy</button></td></tr>
+          <tr><td>Fractured</td><td class="num">/dest Fractured</td><td><button class="copy" type="button" data-copy="/dest Fractured">Copy</button></td></tr>
+          <tr><td>Arx</td><td class="num">/dest Arx</td><td><button class="copy" type="button" data-copy="/dest Arx">Copy</button></td></tr>
+          <tr><td>Kitsune</td><td class="num">/dest Kitsune</td><td><button class="copy" type="button" data-copy="/dest Kitsune">Copy</button></td></tr>
+          <tr><td>CDM</td><td class="num">/dest CDM</td><td><button class="copy" type="button" data-copy="/dest CDM">Copy</button></td></tr>
+          <tr><td>Nara</td><td class="num">/dest Nara</td><td><button class="copy" type="button" data-copy="/dest Nara">Copy</button></td></tr>
+          <tr><td>Whiskia</td><td class="num">/dest Whiskia</td><td><button class="copy" type="button" data-copy="/dest Whiskia">Copy</button></td></tr>
+          <tr><td>Orakuru</td><td class="num">/dest Orakuru</td><td><button class="copy" type="button" data-copy="/dest Orakuru">Copy</button></td></tr>
+          <tr><td>Karasu</td><td class="num">/dest Karasu</td><td><button class="copy" type="button" data-copy="/dest Karasu">Copy</button></td></tr>
+        </tbody>
+      </table>
+    </div>
     <p class="center muted reveal" style="font-size:15px">Station lists as of September 2026. The books at the platforms are always up to date.</p>
   </div>
 </section>
