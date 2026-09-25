@@ -1,17 +1,3 @@
-// Minecart on the roadmap rails (top view, using the minecart's floor texture)
-{
-  const scale = 1.05;
-  document.getElementById("minecart").innerHTML = `
-    <g>
-      <g transform="translate(${-10 * scale} ${-8 * scale})">
-        <rect x="-1.5" y="-1.5" width="${20 * scale + 3}" height="${16 * scale + 3}" fill="#262626"/>
-        <image href="assets/items/minecart_floor.png" width="${20 * scale}" height="${16 * scale}"
-               preserveAspectRatio="none" style="image-rendering: pixelated"/>
-      </g>
-      <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#trail-path"/></animateMotion>
-    </g>`;
-}
-
 // Fox walking along the bottom of the hero. It is built in CSS 3D from the fox model's boxes
 // (sizes in 1/16 block, y pointing down) and every face uses the matching part of fox.png.
 {
