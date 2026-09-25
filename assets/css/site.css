@@ -128,27 +128,15 @@ section.tight { padding: 70px 0; }
 .canopy { position: absolute; left: 0; right: 0; top: 0; height: 200px; pointer-events: none; overflow: hidden;
           -webkit-mask: linear-gradient(#000 60%, transparent); mask: linear-gradient(#000 60%, transparent); }
 .canopy .layer { position: absolute; inset: 0; }
-.canopy .back { filter: brightness(.42) saturate(.7) blur(.4px); }
-.canopy .front { filter: drop-shadow(0 6px 3px rgba(0,0,0,.35)) drop-shadow(0 18px 18px rgba(0,0,0,.45)); }
-/* The texture is pre-scaled with hard edges, so it stays sharp on every screen.
-   Shader-style lighting: soft light from the top left on every block, shade towards
-   the bottom, and ambient occlusion where a taller neighbour meets a shorter one. */
-.canopy i { --leaves: url(../blocks/spruce_leaves.png) 0 0/48px; position: absolute; top: 0; width: 48px; }
-.canopy i::before, .canopy i::after { content: ""; position: absolute; left: 0; right: 0; -webkit-mask: var(--leaves); mask: var(--leaves); }
-.canopy i::before {
-  top: 0; bottom: 0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.45), transparent 14px) 0 100%/14px var(--ao-l, 0) no-repeat,
-    linear-gradient(270deg, rgba(0,0,0,.45), transparent 14px) 100% 100%/14px var(--ao-r, 0) no-repeat,
-    linear-gradient(transparent calc(100% - 40px), rgba(0,0,0,.42)),
-    linear-gradient(135deg, rgba(255,228,165,.2), transparent 40%, transparent 62%, rgba(0,0,0,.2)) 0 0/48px 48px,
-    var(--leaves), #4B7A4E;
-  background-blend-mode: normal, normal, normal, normal, multiply;
-}
-/* Underside of the lowest block, seen from slightly below */
-.canopy i::after {
-  top: 100%; height: 10px; background: var(--leaves), #1F3522; background-blend-mode: multiply;
-  transform: skewX(-45deg); transform-origin: top;
+.canopy .back { filter: brightness(.5); }
+.canopy .front { filter: drop-shadow(0 12px 14px rgba(0,0,0,.5)); }
+/* One continuous sheet of spruce leaves in the game's spruce foliage colour, with a
+   stepped lower edge. The texture is pre-scaled with hard edges, so it stays sharp. */
+.canopy .layer div {
+  position: absolute; left: 0; top: 0;
+  background: linear-gradient(rgba(8,18,12,.55), transparent 75%), url(../blocks/spruce_leaves.png) 0 0/48px, #619961;
+  background-blend-mode: normal, multiply;
+  -webkit-mask: url(../blocks/spruce_leaves.png) 0 0/48px; mask: url(../blocks/spruce_leaves.png) 0 0/48px;
 }
 
 /* Inventory slot */

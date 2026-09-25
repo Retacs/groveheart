@@ -92,7 +92,7 @@ document.addEventListener("click", async event => {
   }, 1500);
 });
 
-// Leaf canopy: two rows of hanging leaf blocks. Seeded, so it looks the same on every visit.
+// Leaf canopy: two rows of hanging spruce leaves. Seeded, so it looks the same on every visit.
 for (const canopy of document.querySelectorAll(".canopy")) {
   let seed = 3;
   const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -107,16 +107,13 @@ for (const canopy of document.querySelectorAll(".canopy")) {
       height = Math.max(min, Math.min(max, height + Math.round(random() * 2 - 1)));
       heights.push(height);
     }
-    heights.forEach((height, i) => {
-      const leaf = document.createElement("i");
-      leaf.style.left = `${i * 48}px`;
-      leaf.style.height = `${height * 48}px`;
-      leaf.style.zIndex = height;
-      // Side faces that stick out below a shorter neighbour get ambient occlusion
-      leaf.style.setProperty("--ao-l", `${Math.max(0, height - (heights[i - 1] ?? height)) * 48}px`);
-      leaf.style.setProperty("--ao-r", `${Math.max(0, height - (heights[i + 1] ?? height)) * 48}px`);
-      layer.append(leaf);
-    });
+    // Stepped lower edge, one block per column
+    const edge = heights.flatMap((height, i) => [`${i * 48}px ${height * 48}px`, `${(i + 1) * 48}px ${height * 48}px`]);
+    const leaves = document.createElement("div");
+    leaves.style.width = `${columns * 48}px`;
+    leaves.style.height = `${max * 48}px`;
+    leaves.style.clipPath = `polygon(0 0, ${columns * 48}px 0, ${edge.reverse().join(", ")})`;
+    layer.append(leaves);
     canopy.append(layer);
   }
 }
