@@ -120,7 +120,10 @@
 .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
 .feature { text-align: center; }
 .stage { position: relative; height: 170px; display: grid; place-items: center; margin-bottom: 18px; }
-.stage .item, .stage .picon { width: 70px; height: 70px; display: block; position: relative; z-index: 2; transition: transform .25s cubic-bezier(.2,.8,.2,1.4); }
+.stage .item, .stage .picon {
+  width: 96px; height: 96px; display: block; position: relative; z-index: 2; transition: transform .25s cubic-bezier(.2,.8,.2,1.4);
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,.45)) drop-shadow(0 0 8px var(--glow)) drop-shadow(0 0 22px var(--glow));
+}
 .feature:hover .stage .item, .feature:hover .stage .picon { transform: scale(1.08) rotate(-6deg); }
 .feature h3 { font-size: 21px; margin-bottom: 10px; }
 .feature p { color: var(--muted); margin-bottom: 18px; }
