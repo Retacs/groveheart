@@ -6,7 +6,7 @@ async function loadGallery() {
   const grid = document.getElementById("photos");
   let photos;
   try {
-    photos = await (await fetch("assets/data/gallery.json")).json();
+    photos = await (await fetch("assets/data/gallery.json", { cache: "no-cache" })).json();
   } catch {
     return;
   }
