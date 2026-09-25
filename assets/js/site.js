@@ -101,14 +101,22 @@ for (const canopy of document.querySelectorAll(".canopy")) {
   for (const [name, min, max] of [["back", 2, 3], ["front", 1, 2]]) {
     const layer = document.createElement("div");
     layer.className = `layer ${name}`;
+    const heights = [];
     let height = min + 1;
     for (let i = 0; i < columns; i++) {
       height = Math.max(min, Math.min(max, height + Math.round(random() * 2 - 1)));
+      heights.push(height);
+    }
+    heights.forEach((height, i) => {
       const leaf = document.createElement("i");
       leaf.style.left = `${i * 48}px`;
       leaf.style.height = `${height * 48}px`;
+      leaf.style.zIndex = height;
+      // Side faces that stick out below a shorter neighbour get ambient occlusion
+      leaf.style.setProperty("--ao-l", `${Math.max(0, height - (heights[i - 1] ?? height)) * 48}px`);
+      leaf.style.setProperty("--ao-r", `${Math.max(0, height - (heights[i + 1] ?? height)) * 48}px`);
       layer.append(leaf);
-    }
+    });
     canopy.append(layer);
   }
 }
