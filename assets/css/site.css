@@ -269,19 +269,14 @@ section.tight { padding: 70px 0; }
 .timeline p { color: var(--muted); font-size: 15px; }
 
 /* Rail networks */
-.network + .network { margin-top: 48px; }
-.network > p { margin-bottom: 18px; }
-.network code, .how code { font: 14px Monocraft, monospace; color: #1F4D2B; background: rgba(31,77,43,.1); padding: 2px 6px; }
-.how { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-bottom: 20px; }
-.how .label { display: block; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #8A6A2C; margin-bottom: 4px; }
-.stations { list-style: none; margin: 0; padding: 0; columns: 3 150px; column-gap: 24px; font: 14px Monocraft, monospace; }
-.stations li { color: #2B2014; break-inside: avoid; padding: 3px 0; }
-.stations li::before { content: "- "; color: #8A6A2C; }
-.stations small { font: 12px Inter, sans-serif; color: #6F604A; }
-.districts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px 28px; }
-.district h4 { font: 15px Monocraft, monospace; margin: 0 0 2px; font-weight: normal; }
-.district .cmd { font: 12px Monocraft, monospace; color: #6F604A; margin-bottom: 6px; }
-.district .stations { columns: 1; }
+.network { padding-top: 60px; padding-bottom: 60px; }
+.how { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 32px; margin-top: 22px; }
+.how .label { display: block; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.how code { font: 15px Monocraft, monospace; color: var(--text); background: rgba(0,0,0,.35); padding: 6px 12px; clip-path: var(--notch-sm); }
+.rail-table td:nth-child(2) { color: var(--path); }
+.rail-table td:last-child { width: 1%; text-align: right; }
+.rail-table small { font: 13px Inter, sans-serif; color: var(--muted); margin-left: 6px; }
+.rail-table tr.district-row td { background: none; box-shadow: none; text-align: left; padding: 22px 16px 4px; font: 15px Monocraft, monospace; color: var(--c); }
 
 /* Shop directory */
 .shop-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 36px; }
