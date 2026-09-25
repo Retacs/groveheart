@@ -106,4 +106,14 @@ const lightbox = {
   },
 };
 
-loadGallery();
+// Gallery page: build the grid. Other pages: any links marked data-lightbox open in the viewer.
+if (document.getElementById("photos")) {
+  loadGallery();
+} else {
+  const links = [...document.querySelectorAll("a[data-lightbox]")];
+  const photos = links.map(link => ({ src: link.getAttribute("href").split("?")[0] }));
+  links.forEach((link, index) => link.addEventListener("click", event => {
+    event.preventDefault();
+    lightbox.open(photos, index);
+  }));
+}
