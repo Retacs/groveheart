@@ -92,51 +92,26 @@ document.addEventListener("click", async event => {
   }, 1500);
 });
 
-// Leaf canopy: rows of 3D leaf columns. Seeded, so it looks the same on every visit.
+// Leaf canopy: one row of leaf blocks along the top edge with a few drapes hanging lower.
+// Some columns have darker leaves further back that reach one block deeper. Seeded, so it
+// looks the same on every visit.
 for (const canopy of document.querySelectorAll(".canopy")) {
-  let seed = 3;
+  let seed = 11;
   const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const block = 48;
-  const half = 28; // columns on each side of the centre, enough for 2560px wide screens
-
-  for (const [name, min, max] of [["back", 2, 3], ["front", 1, 2]]) {
-    const row = document.createElement("div");
-    row.className = `row ${name}`;
-    let height = min + 1;
-    for (let i = -half; i < half; i++) {
-      height = Math.max(min, Math.min(max, height + Math.round(random() * 2 - 1)));
-      const h = height * block;
-      const z = random() < .25 ? block : 0; // some columns reach further out
-      const col = document.createElement("div");
-      col.className = "col";
-      col.style.left = `${i * block}px`;
-      col.style.height = `${h}px`;
-      col.style.transform = `translateZ(${z}px)`;
-      for (const face of ["front-face", "left", "right", "bottom"]) {
-        const el = document.createElement("i");
-        el.className = face;
-        col.append(el);
-      }
-      col.lastChild.style.transform = `translateY(${h - block / 2}px) rotateX(-90deg)`;
-      row.append(col);
-    }
-    canopy.append(row);
+  const columns = Math.ceil(Math.max(innerWidth, screen.width || 0, 2560) / 48);
+  const heights = Array(columns).fill(1);
+  const drapes = [[2], [2, 2], [2, 3, 2], [3, 2], [2, 3], [2, 2, 3, 2]];
+  for (let i = 1 + Math.floor(random() * 4); i < columns - 4; i += 5 + Math.floor(random() * 6)) {
+    drapes[Math.floor(random() * drapes.length)].forEach((height, k) => { heights[i + k] = height; });
   }
-}
-
-// Look up at the canopy from a slightly different angle as the page scrolls
-const canopies = [...document.querySelectorAll(".canopy")];
-if (canopies.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  let queued = false;
-  const tilt = () => {
-    queued = false;
-    for (const canopy of canopies) {
-      const top = canopy.getBoundingClientRect().top;
-      canopy.style.setProperty("--eye", `${Math.round(160 + Math.max(0, Math.min(1, top / innerHeight)) * 200)}%`);
-    }
-  };
-  addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(tilt); } }, { passive: true });
-  tilt();
+  heights.forEach((height, i) => {
+    const deep = height < 3 && random() < .3;
+    const leaf = document.createElement("i");
+    if (deep) leaf.className = "deep";
+    leaf.style.left = `${i * 48}px`;
+    leaf.style.height = `${(height + (deep ? 1 : 0)) * 48}px`;
+    canopy.append(leaf);
+  });
 }
 
 // Fade sections in as they scroll into view
