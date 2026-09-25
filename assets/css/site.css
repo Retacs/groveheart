@@ -130,8 +130,8 @@ section.tight { padding: 70px 0; }
 .canopy .front { filter: drop-shadow(0 10px 8px rgba(0,0,0,.55)) drop-shadow(0 2px 1px rgba(0,0,0,.4)); }
 .canopy i {
   position: absolute; top: 0; width: 40px; transform-origin: top center; image-rendering: pixelated;
-  background: url(../blocks/dark_oak_leaves.png) 0 0/40px, var(--tint, #3A6A22); background-blend-mode: multiply;
-  -webkit-mask: url(../blocks/dark_oak_leaves.png) 0 0/40px; mask: url(../blocks/dark_oak_leaves.png) 0 0/40px;
+  background: url(../blocks/spruce_leaves.png) 0 0/40px, var(--tint, #3F6B45); background-blend-mode: multiply;
+  -webkit-mask: url(../blocks/spruce_leaves.png) 0 0/40px; mask: url(../blocks/spruce_leaves.png) 0 0/40px;
   animation: rustle 6s ease-in-out infinite;
 }
 .canopy i::after {

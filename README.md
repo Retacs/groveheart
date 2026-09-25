@@ -9,8 +9,8 @@ Plain HTML, CSS and JavaScript, no build step. Open `index.html` through any sta
 
 - **Shops:** add entries to `assets/data/shops.json`
   ```json
-  [{ "name": "Oak & Co", "owner": "Steve", "location": "-5900 70 5580", "icon": "diamond",
-     "items": [{ "item": "Oak logs (stack)", "price": "1 D" }] }]
+  [{ "name": "Spruce & Co", "owner": "Steve", "location": "-5900 70 5580", "icon": "diamond",
+     "items": [{ "item": "Spruce logs (stack)", "price": "1 D" }] }]
   ```
   `icon` is the name of a texture in `assets/items`.
 - **Gallery:** put screenshots in `assets/gallery/` and list them in `assets/data/gallery.json`
