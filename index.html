@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Groveheart · Kingdom in the oak woods</title>
+<meta name="description" content="Groveheart is a village kingdom in the oak woods of western Deluvia on CivMC. Free housing, a friendly community and a place to call home.">
+<link rel="icon" href="assets/emblem.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body class="intro">
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/emblem.png" alt="">Groveheart</a>
+    <ul id="menu">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="railways.html">Railways</a></li>
+      <li><a href="shops.html">Shops</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <div class="nav-end">
+      <a class="btn btn-cream btn-sm" href="https://discord.gg/m4mBRJGtxk">Join Discord</a>
+      <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="critters" aria-hidden="true"><img class="berries" src="assets/items/sweet_berries.png" alt=""><div class="fox3d"></div></div>
+  <div class="flag">
+    <div class="stick" aria-hidden="true"></div>
+    <div class="swing"><div class="cloth"><div class="trim"></div><img src="assets/emblem.png" alt="Groveheart emblem"></div></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow rise">Kingdom of Groveheart · CivMC</div>
+    <h1 class="rise">Groveheart</h1>
+    <p class="lead rise">A kingdom in the oak woods of western Deluvia. Find a home, make friends.</p>
+    <div class="btns rise">
+      <a class="btn btn-cream" href="https://discord.gg/m4mBRJGtxk">Join our Discord</a>
+      <a class="btn btn-ghost" href="getting-started.html">Getting started</a>
+    </div>
+  </div>
+</header>
+<div class="stripe" aria-hidden="true"></div>
+
+<section class="has-canopy">
+  <div class="canopy" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Your path</div>
+      <h2>From newcomer to citizen</h2>
+      <p>Your road through Groveheart, from the first night to a house of your own.</p>
+    </div>
+
+    <div class="road reveal" id="road">
+      <svg class="trail" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="trail-grad" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#D2B074" stop-opacity=".25"/>
+            <stop offset=".5" stop-color="#D2B074"/>
+            <stop offset="1" stop-color="#F4EBCF"/>
+          </linearGradient>
+          <mask id="rail-mask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="600">
+            <path d="M 125 250 C 220 250, 260 90, 375 100 S 520 260, 625 250 S 780 90, 875 100" stroke="#fff" stroke-width="13" fill="none"/>
+            <path d="M 125 250 C 220 250, 260 90, 375 100 S 520 260, 625 250 S 780 90, 875 100" stroke="#000" stroke-width="8" fill="none"/>
+          </mask>
+          <mask id="draw-mask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="600">
+            <path class="draw" pathLength="1" d="M 125 250 C 220 250, 260 90, 375 100 S 520 260, 625 250 S 780 90, 875 100"/>
+          </mask>
+        </defs>
+        <path id="trail-path" class="guide" d="M 125 250 C 220 250, 260 90, 375 100 S 520 260, 625 250 S 780 90, 875 100"/>
+        <path class="ghost" d="M 125 250 C 220 250, 260 90, 375 100 S 520 260, 625 250 S 780 90, 875 100"/>
+        <g mask="url(#draw-mask)">
+          <path class="ties" d="M 125 250 C 220 250, 260 90, 375 100 S 520 260, 625 250 S 780 90, 875 100"/>
+          <path class="rails" mask="url(#rail-mask)" d="M 125 250 C 220 250, 260 90, 375 100 S 520 260, 625 250 S 780 90, 875 100"/>
+        </g>
+        <g class="spark" id="minecart"></g>
+      </svg>
+
+      <div class="stop" style="left:12.5%;top:calc(250/400*100%)">
+        <div class="node"><img class="item icon bob" src="assets/items/ender_pearl.png" alt=""></div>
+        <div class="num">STEP 01</div><h3>Arrive</h3>
+        <p>Use your free teleport to a Groveheart contact, or ride to the station.</p>
+      </div>
+      <div class="stop" style="left:37.5%;top:calc(100/400*100%)">
+        <div class="node"><span class="icon bob" data-pix="bed"></span></div>
+        <div class="num">STEP 02</div><h3>Move in</h3>
+        <p>Your own small apartment, from day one.</p>
+      </div>
+      <div class="stop" style="left:62.5%;top:calc(250/400*100%)">
+        <div class="node"><span class="icon bob" data-pix="letter"></span></div>
+        <div class="num">STEP 03</div><h3>Citizen test</h3>
+        <p>After 1&ndash;2 weeks of play, a team member reaches out in your ticket.</p>
+      </div>
+      <div class="stop" style="left:87.5%;top:calc(100/400*100%)">
+        <div class="node"><span class="icon bob" data-pix="hut"></span></div>
+        <div class="num">STEP 04</div><h3>Your house</h3>
+        <p>Pass the test and pick a ready-built house of your own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lorax-sec" id="lorax">
+  <div class="wrap lorax">
+    <div class="grove reveal" aria-hidden="true">
+      <div class="bob" style="display:grid;justify-items:center;gap:14px">
+        <div class="nameplate">King Gidein</div>
+        <img class="head" src="assets/items/gidein.png" alt="">
+      </div>
+      <div class="shadow"></div>
+    </div>
+    <div class="reveal" style="--d:.15s;display:flex;flex-direction:column;align-items:center">
+      <div class="kicker">Our way</div>
+      <h2>We speak for the trees</h2>
+      <p class="muted">King Gidein is our very own Lorax, in looks and in mindset. Groveheart is built around the oak woods, not in place of them, and every citizen helps keep it that way.</p>
+      <div class="law">
+        <button class="toast" type="button" aria-expanded="false" aria-controls="law-more">
+          <img class="item" src="assets/items/iron_axe.png" alt="">
+          <span><span class="toast-title">Law of the Woods</span><span class="toast-text">No tree is felled without permission</span></span>
+          <span class="toast-hint" aria-hidden="true">+</span>
+        </button>
+        <div class="tooltip" id="law-more">
+          <div class="tt-title">Law of the Woods</div>
+          <p>Every oak in Groveheart is protected. Building, digging or clearing anywhere outside your own home or shop needs permission from the King or one of his appointees, and that includes trees.</p>
+          <p class="tt-foot">Groveheart Charter, Article III</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap features">
+    <div class="feature reveal">
+      <div class="stage" style="--glow:rgba(93,224,230,.28)"><div class="frame"><img class="item" src="assets/items/diamond.png" alt=""></div></div>
+      <h3>Ready for business</h3>
+      <p>Free business plots, public farms and an active job board.</p>
+      <a class="link" href="shops.html">Browse shops</a>
+    </div>
+    <div class="feature reveal" style="--d:.12s">
+      <div class="stage" style="--glow:rgba(232,185,35,.28)"><div class="frame"><span class="picon" data-pix="ballot"></span></div></div>
+      <h3>Your voice matters</h3>
+      <p>Run for Prime Minister every 45 days and govern with the cabinet.</p>
+      <a class="link" href="about.html#government">How we're governed</a>
+    </div>
+    <div class="feature reveal" style="--d:.24s">
+      <div class="stage" style="--glow:rgba(190,200,210,.22)"><div class="frame"><img class="item" src="assets/items/rail.png" alt=""></div></div>
+      <h3>Connected by rail</h3>
+      <p>Ten lines from the central station, from the Bayway to the Imperial Railway.</p>
+      <a class="link" href="railways.html">See all lines</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">The realm</div>
+      <h2>Gallery</h2>
+      <p>A look around the capital and the woods.</p>
+    </div>
+    <div class="gallery reveal"><div class="map-tile">Photo coming soon</div><div class="map-tile">Photo</div><div class="map-tile">Photo</div><div class="map-tile">Photo</div><div class="map-tile">Photo</div></div>
+    <div class="center"><a class="link" href="gallery.html">Open gallery</a></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="invite reveal" id="invite">
+      <div class="letter-clip"><div class="letter book">
+        <div class="kicker">By order of the Crown</div>
+        <h2>Sounds like home?</h2>
+        <p>Accept this invitation to Groveheart. Join our Discord and open a ticket in #citizenship, and we'll take it from there.</p>
+        <a class="btn btn-ink" href="https://discord.gg/m4mBRJGtxk">Accept &amp; join our Discord</a>
+        <div class="sign">~ King Gidein</div>
+      </div></div>
+      <div class="envelope" aria-hidden="true">
+        <div class="env-back"></div>
+        <div class="env-pocket"><div class="pocket-shape"></div></div>
+        <div class="flap"><div class="flap-shape"><div class="flap-face"></div></div></div>
+        <div class="seal"><img src="assets/emblem.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/emblem.png" alt="">Groveheart</a>
+        <p style="margin-top:12px;max-width:340px">A village kingdom in the oak woods of western Deluvia on CivMC. Every oak counts.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="getting-started.html">Getting Started</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="railways.html">Railways</a></li>
+          <li><a href="shops.html">Shops</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://discord.gg/m4mBRJGtxk">Discord</a></li>
+          <li><a href="https://civwiki.org/wiki/Groveheart">CivWiki</a></li>
+          <li><a href="https://docs.google.com/document/d/1GsnMtfS-tb5eFH0bBAYprmJq8tW-4tsJ6E7W6b62yhg/">The Charter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© Kingdom of Groveheart</span>
+      <span>Fan-made community site · Not affiliated with Mojang</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>
