@@ -1,21 +1,3 @@
-// Roadmap towers: each step is one block higher than the last
-{
-  let order = 0;
-  for (const tower of document.querySelectorAll(".tower")) {
-    const stack = document.createElement("div");
-    stack.className = "stack";
-    tower.dataset.blocks.split(" ").forEach((type, height) => {
-      const block = document.createElement("div");
-      block.className = `block ${type}`;
-      block.style.setProperty("--k", height);
-      block.style.setProperty("--n", order++);
-      block.innerHTML = '<i class="top"></i><i class="left"></i><i class="right"></i>';
-      stack.append(block);
-    });
-    tower.append(stack);
-  }
-}
-
 // Fox walking along the bottom of the hero. It is built in CSS 3D from the fox model's boxes
 // (sizes in 1/16 block, y pointing down) and every face uses the matching part of fox.png.
 {
