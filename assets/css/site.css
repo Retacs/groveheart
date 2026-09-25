@@ -299,6 +299,70 @@ section.tight { padding: 70px 0; }
 .photo-grid .map-tile { aspect-ratio: 4 / 3; }
 .photo-grid figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; text-align: center; }
 
+/* List filter (styled like the creative inventory search bar) */
+[hidden] { display: none !important; }
+.filter { max-width: 520px; margin: 36px auto 0; text-align: center; }
+.filter input, .search input {
+  width: 100%; font: 16px Monocraft, monospace; color: #fff; background: #0B0D0B; padding: 14px 16px;
+  border: 2px solid #5C625E; outline: none; border-radius: 0; -webkit-appearance: none; appearance: none;
+}
+.filter input::placeholder, .search input::placeholder { color: #6F776F; }
+.filter input:focus, .search input:focus { border-color: var(--path); }
+.filter-empty { margin-top: 14px; color: var(--muted); font-size: 15px; }
+.shop-list + .filter, .filter + .shop-list { margin-top: 36px; }
+
+/* Site search */
+.search-toggle { display: flex; padding: 2px; background: none; border: 0; color: var(--muted); cursor: pointer; transition: color .15s; }
+.search-toggle svg { width: 17px; height: 17px; }
+.search-toggle:hover { color: var(--text); }
+.search-toggle:focus-visible { outline: 2px solid var(--path); outline-offset: 3px; }
+nav.open .search-toggle { padding: 12px 0; }
+
+.search {
+  position: fixed; inset: 0; z-index: 50; padding: 12vh 20px 20px;
+  background: rgba(6,9,7,.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity .15s ease;
+}
+.search.visible { opacity: 1; }
+.search-box {
+  max-width: 600px; margin: 0 auto; font-family: Inter, system-ui, sans-serif;
+  background: rgba(22,27,23,.96); border: 1px solid rgba(241,238,221,.08); border-radius: 16px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.4);
+  overflow: hidden; transform: translateY(-8px) scale(.98); transition: transform .15s ease;
+}
+.search.visible .search-box { transform: none; }
+.search-field { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(241,238,221,.07); }
+.search-field > svg { width: 19px; height: 19px; color: var(--muted); flex: none; }
+.search-field input {
+  flex: 1; min-width: 0; font: 17px Inter, system-ui, sans-serif; color: var(--text);
+  background: none; border: 0; outline: none; padding: 2px 0; -webkit-appearance: none; appearance: none;
+}
+.search-field input::placeholder { color: #737B73; }
+.search-field input::-webkit-search-cancel-button { display: none; }
+.search kbd {
+  font: 500 11px Inter, sans-serif; color: var(--muted); background: rgba(241,238,221,.06);
+  border: 1px solid rgba(241,238,221,.1); border-radius: 5px; padding: 2px 6px;
+}
+.search-results { list-style: none; margin: 0; padding: 8px; max-height: 50vh; overflow-y: auto; }
+.search-results:empty { display: none; }
+.search-results a {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 10px 12px; border-radius: 10px; text-decoration: none; transition: background .1s;
+}
+.search-results a:hover, .search-results a.active { background: rgba(241,238,221,.06); }
+.search-results a.active { box-shadow: inset 2px 0 0 var(--path); }
+.result-text { min-width: 0; }
+.result-text strong { display: block; font-weight: 600; font-size: 15px; color: var(--text); }
+.result-text span { display: block; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+.result-type { flex: none; font-size: 12px; color: #8C948B; background: rgba(241,238,221,.05); padding: 3px 9px; border-radius: 99px; }
+.search-empty { padding: 26px 20px; text-align: center; color: var(--muted); font-size: 14px; }
+.search-foot { display: flex; gap: 18px; justify-content: flex-end; padding: 10px 16px; border-top: 1px solid rgba(241,238,221,.07); font-size: 12px; color: #737B73; }
+.search-foot kbd { margin-right: 3px; }
+@media (max-width: 520px) {
+  .search { padding-top: 70px; }
+  .search-foot, .search-field kbd { display: none; }
+}
+
 /* Footer */
 footer { background: var(--bg-deep); padding: 56px 0 28px; font-size: 15px; color: var(--muted); }
 .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }

@@ -106,8 +106,12 @@
       <h2>Towns of the kingdom</h2>
       <p>Groveheart City is the capital. Around it, citizens have founded towns and settlements of their own.</p>
     </div>
+    <div class="filter reveal">
+      <input type="search" data-filter="settlements" placeholder="Find a settlement or leader" aria-label="Find a settlement" autocomplete="off">
+      <p class="filter-empty" data-filter-empty="settlements" hidden>No settlement found.</p>
+    </div>
     <div class="table-scroll reveal">
-      <table class="mc-table">
+      <table class="mc-table" data-filter-group="settlements">
         <thead><tr><th>Name</th><th>Type</th><th>Founded</th><th>Leader</th></tr></thead>
         <tbody>
           <tr><td>Groveheart City</td><td>Capital city</td><td class="num">Nov 2023</td><td>Gidein</td></tr>

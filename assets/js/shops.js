@@ -19,6 +19,7 @@ async function loadShops() {
   }
   if (!Array.isArray(shops) || !shops.length) return;
 
+  list.previousElementSibling.hidden = false;
   list.replaceChildren(...shops.map(shop => {
     const card = el("article", "shop");
 
