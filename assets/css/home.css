@@ -87,25 +87,18 @@
 .banners .stick { height: 8px; }
 .banners .stick::before, .banners .stick::after { width: 10px; height: 14px; }
 .banners .swing { animation-delay: calc(var(--i) * -1.7s); }
-.banners .cloth { width: 116px; padding: 46px 0 88px; transform: scaleY(0); animation: none; }
+.banners .cloth { width: 116px; padding: 44px 0 86px; transform: scaleY(0); animation: none; }
 .banners.shown .cloth {
   animation: unfurl 1s calc(var(--i) * .3s) cubic-bezier(.2,.8,.2,1) both, tails 4.5s calc(var(--i) * .3s + 1s) ease-in-out infinite;
 }
 .banners .cloth .trim::after { top: 12px; }
-.numeral { position: relative; display: block; font: 28px/1 Monocraft, monospace; color: #F1D48C; text-shadow: 3px 3px 0 #2E2208; }
-/* Lozenge, the diamond banner pattern */
-.numeral::before {
-  content: ""; position: absolute; z-index: -1; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px;
-  transform: rotate(45deg); background: #0A4A18; box-shadow: inset 0 0 0 2px rgba(241,212,140,.45);
-}
+.banners .cloth .icon { position: relative; display: block; width: 64px; height: 64px; margin: 0 auto; filter: drop-shadow(3px 3px 0 rgba(0,0,0,.35)); }
 .banners li:last-child .cloth {
   background:
     linear-gradient(90deg, rgba(0,0,0,.25), transparent 18%, transparent 82%, rgba(0,0,0,.25)),
     linear-gradient(#C99A3E, #8A6424);
 }
 .banners li:last-child .trim { background: linear-gradient(#F1D48C 0 4px, #6B4E1C 4px); }
-.banners li:last-child .numeral { color: #F1D48C; }
-.banners li:last-child .numeral::before { background: #0D5A1D; box-shadow: inset 0 0 0 2px #F1D48C; }
 .banners h3 { font-size: 20px; margin: 26px 0 8px; }
 .banners p { color: var(--muted); font-size: 15.5px; max-width: 240px; margin: 0 auto; }
 
