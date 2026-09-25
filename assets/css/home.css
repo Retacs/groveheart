@@ -75,49 +75,48 @@
 @keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
-/* Roadmap */
-.road { position: relative; height: 420px; }
-/* Old paper map behind the roadmap, drawn like a Minecraft map item */
-.road .map {
-  position: absolute; inset: -12px -48px -36px; image-rendering: pixelated;
-  border: 20px solid transparent; border-image: url(../blocks/map_background.png) 5 fill stretch;
-  box-shadow: 0 24px 50px rgba(0,0,0,.45);
+/* Roadmap, shown as a Minecraft advancement line. Steps unlock one after another. */
+.adv { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; position: relative; }
+.adv::before, .adv::after {
+  content: ""; position: absolute; left: 12.5%; right: 12.5%; top: 49px; height: 6px;
+  background: linear-gradient(#000 0 2px, #4A4A4A 2px 4px, #000 4px);
 }
-.road .map::before { content: ""; position: absolute; inset: 0; background: url(../blocks/roadmap.png) center/cover; opacity: .9; }
-.road .stop h3 { color: #2E2010; text-shadow: 0 0 4px #E4D3AA, 0 0 8px #E4D3AA; }
-.road .stop p { color: #3F301C; font-weight: 500; text-shadow: 0 0 3px #E4D3AA, 0 0 6px #E4D3AA, 0 0 10px #E4D3AA; }
-.road svg.trail { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.trail path { fill: none; vector-effect: non-scaling-stroke; }
-.trail .guide { stroke: none; }
-.trail .ghost { stroke: rgba(46,32,16,.45); stroke-width: 3; stroke-dasharray: 8 7; }
-.trail .ties { stroke: #6B4A26; stroke-width: 18; stroke-dasharray: 4 7; }
-.trail .rails { stroke: #B4B4B4; stroke-width: 13; }
-.trail .draw { stroke: #fff; stroke-width: 20; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s cubic-bezier(.6,0,.3,1); }
-.road.shown .trail .draw { stroke-dashoffset: 0; }
-.trail .spark { opacity: 0; transition: opacity .6s 2.4s; }
-.road.shown .trail .spark { opacity: 1; }
-.stop { position: absolute; width: 240px; transform: translate(-50%, -40px); text-align: center; opacity: 0; transition: opacity .6s, transform .6s; }
-.road.shown .stop { opacity: 1; transform: translate(-50%, -48px); }
-.road.shown .stop:nth-of-type(2) { transition-delay: .55s; }
-.road.shown .stop:nth-of-type(3) { transition-delay: 1.2s; }
-.road.shown .stop:nth-of-type(4) { transition-delay: 1.85s; }
-.road { counter-reset: step; }
-.stop { counter-increment: step; }
-.stop .node {
-  margin: 0 auto 18px; background: #22382B; border-color: #13221A #43644F #43644F #13221A;
-  box-shadow: 0 0 0 2px #0A120E, 0 0 0 4px rgba(210,176,116,.28), 0 14px 28px rgba(0,0,0,.45);
+.adv::after { background: linear-gradient(#000 0 2px, #fff 2px 4px, #000 4px); transform: scaleX(0); transform-origin: left; transition: transform 2.1s linear .3s; }
+.adv.shown::after { transform: none; }
+.adv li { --t: .3s; display: flex; flex-direction: column; align-items: center; }
+.adv li:nth-child(2) { --t: 1s; }
+.adv li:nth-child(3) { --t: 1.7s; }
+.adv li:nth-child(4) { --t: 2.4s; }
+
+.adv-frame { --off: url(../gui/task_frame_unobtained.png); --on: url(../gui/task_frame_obtained.png);
+  position: relative; z-index: 1; width: 104px; height: 104px; display: grid; place-items: center; background: var(--off) 0 0/100%; }
+.goal .adv-frame { --off: url(../gui/goal_frame_unobtained.png); --on: url(../gui/goal_frame_obtained.png); }
+.challenge .adv-frame { --off: url(../gui/challenge_frame_unobtained.png); --on: url(../gui/challenge_frame_obtained.png); }
+.adv-frame::before { content: ""; position: absolute; inset: 0; background: var(--on) 0 0/100%; opacity: 0; transition: opacity .2s var(--t); }
+.adv-frame .icon { position: relative; width: 64px; height: 64px; filter: grayscale(.7) brightness(.8); transition: filter .2s var(--t); }
+.adv.shown .adv-frame { animation: unlock .5s var(--t) cubic-bezier(.2,.8,.2,1.4) both; }
+.adv.shown .adv-frame::before { opacity: 1; }
+.adv.shown .adv-frame .icon { filter: none; }
+@keyframes unlock { 0%, 100% { transform: none; } 40% { transform: scale(1.12); } }
+
+/* Title bar and description box, drawn like the advancement tooltip (4px = 1 GUI pixel) */
+.adv-card { width: 100%; max-width: 250px; margin: 22px 4px 0; }
+.adv-card h3, .adv-card p {
+  --notch: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px),
+                   calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 4px 4px);
+  border: 4px solid #000; clip-path: var(--notch);
 }
-.stop:last-of-type .node { box-shadow: 0 0 0 2px #0A120E, 0 0 0 4px #D2B074, 0 14px 28px rgba(0,0,0,.45); }
-/* Step number in the corner, like an item count */
-.stop .node::after {
-  content: counter(step); position: absolute; right: 4px; bottom: 0;
-  font: 18px Monocraft, monospace; color: #fff; text-shadow: 2px 2px 0 #3F3F3F;
+.adv-card h3 {
+  margin: 0; padding: 8px 10px 6px; font-size: 17px; color: #fff; text-shadow: 2px 2px 0 #3F3F3F;
+  background: #036A96; box-shadow: inset 4px 4px 0 #0489C1, inset 0 -4px 0 #024A6A;
+  transition: background .2s var(--t), box-shadow .2s var(--t);
 }
-.stop:nth-of-type(2) .bob { animation-delay: -.8s; }
-.stop:nth-of-type(3) .bob { animation-delay: -1.6s; }
-.stop:nth-of-type(4) .bob { animation-delay: -2.4s; }
-.stop h3 { font-size: 20px; margin: 0 0 8px; }
-.stop p { color: var(--muted); font-size: 15px; max-width: 220px; margin: 0 auto; }
+.adv.shown .adv-card h3 { background: #B98F2C; box-shadow: inset 4px 4px 0 #DBA213, inset 0 -4px 0 #493606; }
+.adv-card p {
+  margin: 0; padding: 10px 12px 12px; font-size: 15px; font-weight: 500; line-height: 1.5; color: #7EE07E;
+  background: #212121; box-shadow: inset 4px 4px 0 #555, inset -4px -4px 0 #151515; border-top: 0;
+}
+.challenge .adv-card p { color: #D99BFF; }
 
 /* Lorax */
 .lorax-sec { overflow: visible; z-index: 2; }
@@ -192,25 +191,25 @@
   .gallery .map-tile:nth-child(n+4) { display: none; }
 }
 @media (max-width: 760px) {
-  .road { height: auto; padding-left: 92px; }
-  .road svg.trail { display: none; }
-  .road::before { content: ""; position: absolute; z-index: 1; left: 35px; top: 30px; bottom: 30px; border-left: 3px dashed rgba(46,32,16,.5); }
-  .road .map { inset: -28px -12px; border-width: 12px; }
-  .stop { position: relative; left: auto !important; top: auto !important; width: auto; transform: none !important; text-align: left; opacity: 1; margin-bottom: 40px; min-height: 72px; }
-  .stop:last-child { margin-bottom: 0; }
-  .stop p { margin: 0; max-width: none; }
-  .stop .node { position: absolute; left: -92px; top: 0; width: 72px; height: 72px; margin: 0; }
-  .stop .node .icon { width: 40px; height: 40px; }
-  .stop .node::after { font-size: 14px; right: 2px; }
+  .adv { grid-template-columns: 1fr; gap: 22px; }
+  .adv::before, .adv::after { display: none; }
+  .adv li { position: relative; }
+  .adv li:not(:last-child)::before, .adv li:not(:last-child)::after {
+    content: ""; position: absolute; left: 36px; top: 39px; height: calc(100% + 22px); width: 6px;
+    background: linear-gradient(90deg, #000 0 2px, #4A4A4A 2px 4px, #000 4px);
+  }
+  .adv li:not(:last-child)::after { background: linear-gradient(90deg, #000 0 2px, #fff 2px 4px, #000 4px); transform: scaleY(0); transform-origin: top; transition: transform .7s linear var(--t); }
+  .adv.shown li::after { transform: none; }
+  .adv li { flex-direction: row; align-items: flex-start; gap: 16px; }
+  .adv-frame { width: 78px; height: 78px; flex: none; }
+  .adv-frame .icon { width: 48px; height: 48px; }
+  .adv-card { max-width: none; margin-top: 4px; }
+}
 }
 @media (max-width: 560px) {
   .letter { margin: 0 10px; }
   .letter h2 { white-space: normal; }
 }
-@media (prefers-reduced-motion: reduce) and (min-width: 761px) {
-  .stop { opacity: 1 !important; transform: translate(-50%, -48px) !important; }
-}
 @media (prefers-reduced-motion: reduce) {
-  .trail .draw { stroke-dashoffset: 0; }
   .shown .flap { transform: scaleY(-1); z-index: 0; }
 }

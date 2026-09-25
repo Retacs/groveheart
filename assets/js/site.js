@@ -92,30 +92,51 @@ document.addEventListener("click", async event => {
   }, 1500);
 });
 
-// Leaf canopy: two rows of hanging spruce leaves. Seeded, so it looks the same on every visit.
+// Leaf canopy: rows of 3D leaf columns. Seeded, so it looks the same on every visit.
 for (const canopy of document.querySelectorAll(".canopy")) {
   let seed = 3;
   const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const columns = Math.ceil(Math.max(innerWidth, screen.width || 0, 3840) / 48) + 1;
+  const block = 48;
+  const half = 28; // columns on each side of the centre, enough for 2560px wide screens
 
   for (const [name, min, max] of [["back", 2, 3], ["front", 1, 2]]) {
-    const layer = document.createElement("div");
-    layer.className = `layer ${name}`;
-    const heights = [];
+    const row = document.createElement("div");
+    row.className = `row ${name}`;
     let height = min + 1;
-    for (let i = 0; i < columns; i++) {
+    for (let i = -half; i < half; i++) {
       height = Math.max(min, Math.min(max, height + Math.round(random() * 2 - 1)));
-      heights.push(height);
+      const h = height * block;
+      const z = random() < .25 ? block : 0; // some columns reach further out
+      const col = document.createElement("div");
+      col.className = "col";
+      col.style.left = `${i * block}px`;
+      col.style.height = `${h}px`;
+      col.style.transform = `translateZ(${z}px)`;
+      for (const face of ["front-face", "left", "right", "bottom"]) {
+        const el = document.createElement("i");
+        el.className = face;
+        col.append(el);
+      }
+      col.lastChild.style.transform = `translateY(${h - block / 2}px) rotateX(-90deg)`;
+      row.append(col);
     }
-    // Stepped lower edge, one block per column
-    const edge = heights.flatMap((height, i) => [`${i * 48}px ${height * 48}px`, `${(i + 1) * 48}px ${height * 48}px`]);
-    const leaves = document.createElement("div");
-    leaves.style.width = `${columns * 48}px`;
-    leaves.style.height = `${max * 48}px`;
-    leaves.style.clipPath = `polygon(0 0, ${columns * 48}px 0, ${edge.reverse().join(", ")})`;
-    layer.append(leaves);
-    canopy.append(layer);
+    canopy.append(row);
   }
+}
+
+// Look up at the canopy from a slightly different angle as the page scrolls
+const canopies = [...document.querySelectorAll(".canopy")];
+if (canopies.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let queued = false;
+  const tilt = () => {
+    queued = false;
+    for (const canopy of canopies) {
+      const top = canopy.getBoundingClientRect().top;
+      canopy.style.setProperty("--eye", `${Math.round(160 + Math.max(0, Math.min(1, top / innerHeight)) * 200)}%`);
+    }
+  };
+  addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(tilt); } }, { passive: true });
+  tilt();
 }
 
 // Fade sections in as they scroll into view

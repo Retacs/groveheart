@@ -123,21 +123,29 @@ section.tight { padding: 70px 0; }
 .link:hover::after { transform: translateX(4px); }
 .center { text-align: center; margin-top: 28px; }
 
-/* Leaf canopy */
-.has-canopy { padding-top: 170px; }
-.canopy { position: absolute; left: 0; right: 0; top: 0; height: 200px; pointer-events: none; overflow: hidden;
-          -webkit-mask: linear-gradient(#000 60%, transparent); mask: linear-gradient(#000 60%, transparent); }
-.canopy .layer { position: absolute; inset: 0; }
-.canopy .back { filter: brightness(.5); }
-.canopy .front { filter: drop-shadow(0 12px 14px rgba(0,0,0,.5)); }
-/* One continuous sheet of spruce leaves in the game's spruce foliage colour, with a
-   stepped lower edge. The texture is pre-scaled with hard edges, so it stays sharp. */
-.canopy .layer div {
-  position: absolute; left: 0; top: 0;
-  background: linear-gradient(rgba(8,18,12,.55), transparent 75%), url(../blocks/spruce_leaves.png) 0 0/48px, #619961;
-  background-blend-mode: normal, multiply;
-  -webkit-mask: url(../blocks/spruce_leaves.png) 0 0/48px; mask: url(../blocks/spruce_leaves.png) 0 0/48px;
+/* Leaf canopy: real 3D spruce leaf blocks seen from below. Each column is a box with
+   front, side and bottom faces, lit like a shader pack: warm light from the upper left,
+   cool shade on the undersides and fog on the back row. */
+.has-canopy { padding-top: 190px; }
+.canopy {
+  position: absolute; left: 0; right: 0; top: 0; height: 230px; pointer-events: none; overflow: hidden;
+  perspective: 700px; perspective-origin: 50% var(--eye, 260%);
+  background: linear-gradient(rgba(0,0,0,.35), transparent);
 }
+.canopy .row { position: absolute; left: 50%; top: -8px; transform-style: preserve-3d; }
+.canopy .row.back { transform: translateZ(-150px); }
+.canopy .col { position: absolute; top: 0; width: 48px; transform-style: preserve-3d; }
+.canopy .col i {
+  --leaves: url(../blocks/spruce_leaves.png) 0 0/48px;
+  position: absolute; left: 0; top: 0; width: 48px; height: 100%; backface-visibility: hidden;
+  background: var(--shade), var(--leaves), #619961; background-blend-mode: normal, multiply;
+  -webkit-mask: var(--leaves); mask: var(--leaves);
+}
+.canopy .front-face { --shade: linear-gradient(rgba(10,20,12,.4), rgba(0,0,0,0) 60%, rgba(255,220,160,.16)); transform: translateZ(24px); }
+.canopy .left  { --shade: linear-gradient(90deg, rgba(0,0,0,.55), rgba(255,214,150,.10)); transform: translateX(-24px) rotateY(-90deg); }
+.canopy .right { --shade: linear-gradient(270deg, rgba(0,0,0,.2), rgba(0,0,0,.55)); transform: translateX(24px) rotateY(90deg); }
+.canopy .bottom { --shade: linear-gradient(rgba(0,8,16,.55), rgba(30,50,70,.3)); height: 48px !important; }
+.canopy .back i { filter: brightness(.55) saturate(.8); }
 
 /* Inventory slot */
 .node {
