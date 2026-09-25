@@ -75,46 +75,42 @@
 @keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
-/* Roadmap: four steps climbing like a staircase, joined by one line that lights up step by step */
-.steps { --rise: 48px; --gap: 32px; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 var(--gap); }
-.steps li { --i: 0; --line: rgba(210,176,116,.2); position: relative; opacity: 0; transform: translateY(12px); transition: opacity .6s calc(var(--i) * .9s), transform .6s calc(var(--i) * .9s); }
-.steps li:nth-child(1) { margin-top: calc(var(--rise) * 3); }
-.steps li:nth-child(2) { --i: 1; margin-top: calc(var(--rise) * 2); }
-.steps li:nth-child(3) { --i: 2; margin-top: var(--rise); }
-.steps li:nth-child(4) { --i: 3; }
-.steps.shown li { opacity: 1; transform: none; }
+/* Roadmap: a walk through the real town. Each step is a screenshot in a pixel frame with the
+   step's item in a slot on top; the number in the corner is drawn like an item count. */
+.journey { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.journey li { --i: 0; opacity: 0; transform: translateY(16px); transition: opacity .6s calc(var(--i) * .15s), transform .6s calc(var(--i) * .15s); }
+.journey li:nth-child(2) { --i: 1; }
+.journey li:nth-child(3) { --i: 2; }
+.journey li:nth-child(4) { --i: 3; }
+.journey.shown li { opacity: 1; transform: none; }
 
-/* The line leaves each slot, climbs one step and runs into the next slot */
-.steps li:not(:last-child)::before, .steps li:not(:last-child) > .lit::before {
-  content: ""; position: absolute; left: 40px; top: calc(41px - var(--rise)); width: calc(100% - 40px + var(--gap) / 2); height: var(--rise);
-  border: solid var(--line); border-width: 0 2px 2px 0;
+/* Corners cut in 4px steps, like the Minecraft GUI */
+.shot {
+  aspect-ratio: 4 / 3; padding: 4px; background: #0A120E;
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px),
+    0 8px, 4px 8px, 4px 4px, 8px 4px);
 }
-.steps li:not(:first-child)::after, .steps li:not(:first-child) > .lit::after {
-  content: ""; position: absolute; left: calc(var(--gap) / -2 - 2px); top: 39px; width: calc(var(--gap) / 2 + 42px); height: 2px;
-  background: var(--line);
+.shot img {
+  width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s cubic-bezier(.2,.8,.2,1);
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 4px 4px);
 }
-.steps .lit { --line: var(--path); position: absolute; inset: 0; pointer-events: none; }
-.steps .lit::before { clip-path: inset(100% 100% 0 0); }
-.steps .lit::after { clip-path: inset(0 100% 0 0); }
-.steps.shown .lit::before { animation: climb .7s calc(var(--i) * .9s + .3s) linear forwards; }
-.steps.shown .lit::after { animation: fill .15s calc(var(--i) * .9s + .1s) linear forwards; }
-@keyframes climb { 70% { clip-path: inset(calc(100% - 2px) 0 0 0); } to { clip-path: inset(0); } }
-@keyframes fill { to { clip-path: inset(0); } }
+.journey li:hover .shot img { transform: scale(1.05); }
 
-/* Inventory slot in the forest colours; it turns gold once the line reaches it */
+.journey-title { position: relative; display: flex; align-items: flex-end; gap: 14px; margin: -30px 0 12px 14px; }
 .step-slot {
-  position: relative; z-index: 1; width: 80px; height: 80px; display: grid; place-items: center;
+  position: relative; flex: none; width: 64px; height: 64px; display: grid; place-items: center;
   background: #1B2C22; border: 4px solid; border-color: #0C1510 #3A5644 #3A5644 #0C1510;
-  box-shadow: 0 0 0 2px rgba(210,176,116,.2), 0 12px 24px rgba(0,0,0,.35);
-  transition: box-shadow .4s calc(var(--i) * .9s + .25s);
+  box-shadow: 0 0 0 2px #0A120E, 0 10px 20px rgba(0,0,0,.45);
 }
-.steps.shown .step-slot { box-shadow: 0 0 0 2px var(--path), 0 12px 24px rgba(0,0,0,.35); }
-.steps li:last-child .step-slot { background: #26301F; }
 .step-slot .icon { width: 48px; height: 48px; filter: drop-shadow(3px 3px 0 rgba(0,0,0,.3)); transition: transform .25s; }
-.steps li:hover .step-slot .icon { transform: translateY(-3px); }
-.step-num { display: block; margin: 24px 0 8px; font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--path); }
-.steps h3 { font-size: 20px; margin-bottom: 8px; }
-.steps p { color: var(--muted); font-size: 15.5px; max-width: 250px; }
+.journey li:hover .step-slot .icon { transform: translateY(-3px); }
+.step-slot span { position: absolute; right: 1px; bottom: -3px; font: 18px Monocraft, monospace; color: #fff; text-shadow: 2px 2px 0 #3F3F3F; }
+.journey li:last-child .step-slot { box-shadow: 0 0 0 2px var(--path), 0 10px 20px rgba(0,0,0,.45); }
+.journey h3 { font-size: 19px; margin-bottom: 2px; }
+.journey p { color: var(--muted); font-size: 15.5px; margin: 0 4px; }
 
 /* Lorax */
 .lorax-sec { overflow: visible; z-index: 2; }
@@ -187,25 +183,15 @@
   .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 140px; }
   .gallery .map-tile:first-child { grid-row: auto; grid-column: span 2; }
   .gallery .map-tile:nth-child(n+4) { display: none; }
-}
-@media (max-width: 760px) {
-  .steps { grid-template-columns: 1fr; gap: 32px; }
-  .steps li { margin-top: 0 !important; padding-left: 104px; min-height: 80px; }
-  .step-slot { position: absolute; left: 0; top: 0; }
-  .step-num { margin-top: 4px; }
-  .steps li:not(:last-child)::before, .steps li:not(:last-child) > .lit::before {
-    left: 39px; top: 40px; width: 2px; height: calc(100% + 32px); border: 0; background: var(--line);
-  }
-  .steps .lit::before { clip-path: inset(0 0 100% 0); }
-  .steps.shown .lit::before { animation: fill .7s calc(var(--i) * .9s + .3s) linear forwards; }
-  .steps li::after, .steps .lit::after { display: none; }
+  .journey { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
 }
 @media (max-width: 560px) {
+  .journey { grid-template-columns: 1fr; }
+  .shot { aspect-ratio: 16 / 9; }
   .letter { margin: 0 10px; }
   .letter h2 { white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .steps li { opacity: 1; transform: none; }
-  .steps .lit::before, .steps .lit::after { clip-path: none; }
+  .journey li { opacity: 1; transform: none; }
   .shown .flap { transform: scaleY(-1); z-index: 0; }
 }
