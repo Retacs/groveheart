@@ -12,7 +12,7 @@
   --bg-hero: #10301B;
   --line: rgba(241,238,221,.10);
   --text: #F1EEDD;
-  --muted: #B3C2AC;
+  --muted: #C4CEBE;
   --path: #D2B074;
   --gold: #FFAA00;
   --cream: #F4EBCF;
@@ -29,7 +29,7 @@ body {
   color: var(--text);
   font-family: Inter, system-ui, sans-serif;
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3 { font-family: Monocraft, monospace; font-weight: normal; line-height: 1.2; margin: 0; text-shadow: .1em .1em 0 #3C3B37; }
@@ -105,7 +105,7 @@ nav ul a:hover, nav ul a[aria-current="page"] { color: var(--text); }
 .page-hero .icon { width: 72px; height: 72px; margin: 0 auto 8px; }
 .page-hero .shadow { width: 48px; height: 8px; margin-bottom: 22px; }
 .page-hero h1 { font-size: clamp(36px, 6vw, 60px); margin-bottom: 16px; }
-.page-hero .lead { max-width: 600px; margin: 0 auto; color: var(--muted); font-size: 19px; }
+.page-hero .lead { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: 20px; line-height: 1.6; }
 .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--path); margin-bottom: 14px; }
 
 /* Sections */
@@ -113,7 +113,7 @@ section { position: relative; padding: 100px 0; }
 section.tight { padding: 70px 0; }
 .section-head { text-align: center; max-width: 780px; margin: 0 auto 56px; }
 .section-head h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
-.section-head p { color: var(--muted); }
+.section-head p { color: var(--muted); font-size: 18px; max-width: 660px; margin-left: auto; margin-right: auto; }
 .kicker { font-family: Monocraft; font-size: 14px; letter-spacing: .06em; color: var(--gold); text-shadow: 2px 2px 0 #3F2A00; margin-bottom: 12px; }
 .link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 15px; }
 .link:hover { color: var(--path); }
@@ -172,7 +172,7 @@ section.tight { padding: 70px 0; }
 }
 .book h2, .book h3 { color: #1F3A25; text-shadow: 3px 3px 0 #E3D7BA; }
 .book h3 { text-shadow: 2px 2px 0 #E3D7BA; }
-.book p, .book li { color: #4F4332; }
+.book p, .book li { color: #4A3F2F; font-size: 17px; line-height: 1.65; }
 .book .kicker { color: #8A6A2C; text-shadow: none; }
 
 /* Advancement toast and tooltip */
@@ -219,7 +219,7 @@ section.tight { padding: 70px 0; }
 .icon-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 36px; }
 .icon-list > div { display: flex; gap: 16px; align-items: flex-start; }
 .icon-list h3 { font-size: 17px; margin-bottom: 6px; }
-.icon-list p { color: var(--muted); font-size: 15px; }
+.icon-list p { color: var(--muted); font-size: 16px; }
 
 /* Channel chips */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
@@ -232,8 +232,8 @@ section.tight { padding: 70px 0; }
 .quest li { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 44px; position: relative; }
 .quest li:last-child { margin-bottom: 0; }
 .quest .num { font: 13px Monocraft, monospace; color: var(--gold); text-shadow: 2px 2px 0 #3F2A00; }
-.quest h3 { font-size: 20px; margin: 4px 0 8px; }
-.quest p { color: var(--muted); }
+.quest h3 { font-size: 21px; margin: 4px 0 10px; }
+.quest p { color: var(--muted); font-size: 17px; max-width: 620px; }
 .quest p a { color: var(--path); }
 .quest .coords, .quest .chip { margin: 2px 0; }
 
@@ -257,7 +257,7 @@ section.tight { padding: 70px 0; }
 .minister { padding-left: 20px; box-shadow: inset 3px 0 0 var(--path); }
 .minister .role { font: 13px Monocraft, monospace; color: var(--gold); margin-bottom: 6px; }
 .minister h3 { font-size: 22px; margin-bottom: 8px; }
-.minister p { color: var(--muted); font-size: 15px; }
+.minister p { color: var(--muted); font-size: 16px; }
 
 /* Timeline */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
@@ -265,8 +265,41 @@ section.tight { padding: 70px 0; }
 .timeline li { display: grid; grid-template-columns: 112px 1fr; gap: 44px; margin-bottom: 34px; position: relative; }
 .timeline li::before { content: ""; position: absolute; left: 127px; top: 6px; width: 12px; height: 12px; background: var(--path); box-shadow: 0 0 0 4px var(--bg); }
 .timeline .date { font: 13px Monocraft, monospace; color: var(--gold); text-align: right; padding-top: 2px; white-space: nowrap; }
-.timeline h3 { font-size: 18px; margin-bottom: 6px; }
-.timeline p { color: var(--muted); font-size: 15px; }
+.timeline h3 { font-size: 19px; margin-bottom: 6px; }
+.timeline p { color: var(--muted); font-size: 16px; }
+
+/* CivNav teaser, styled after the mod's own UI */
+.mod { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: center; max-width: 1000px; margin: 0 auto; }
+.mod h2 { font-size: clamp(34px, 5vw, 52px); margin-bottom: 16px; }
+.mod-body > p { color: var(--muted); max-width: 480px; }
+.mod-features { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; }
+.mod-features li { display: flex; gap: 12px; align-items: center; }
+.mod-features li::before { content: ""; width: 8px; height: 8px; background: #5FB8E8; flex: none; }
+.mod-note { margin-top: 24px; font-size: 15px; }
+.mod-note a { color: var(--path); }
+
+.civnav {
+  font-family: Monocraft, monospace; color: #F2F4F6; background: #1F2A36;
+  border: 2px solid #6CB4E0; box-shadow: 0 30px 60px rgba(0,0,0,.45), 0 0 0 6px rgba(108,180,224,.08);
+}
+.cn-head { display: flex; justify-content: space-between; align-items: flex-start; padding: 18px 20px 16px; border-bottom: 2px solid #3E5A74; }
+.cn-logo { font-size: 20px; }
+.cn-logo b { font-weight: normal; color: #6CC4F0; }
+.cn-ver { font-size: 14px; color: #C9D1D9; }
+.cn-by { font-size: 13px; color: #9AA6B2; margin-top: 4px; }
+.cn-button { font-size: 14px; background: #8E3340; border: 2px solid #1A1A1A; padding: 6px 18px; }
+.cn-label { font-size: 13px; color: #9AA6B2; text-transform: uppercase; letter-spacing: .04em; padding: 16px 20px 8px; }
+.cn-route { list-style: none; margin: 0; padding: 0 20px; display: grid; gap: 6px; }
+.cn-route li { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; background: #25323F; padding: 9px 12px; }
+.cn-route li span:first-child { display: flex; align-items: center; gap: 10px; }
+.cn-route li span:first-child::before { content: ""; width: 10px; height: 10px; background: var(--c); flex: none; }
+.cn-route li span:last-child { color: #C9D1D9; white-space: nowrap; }
+.cn-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 14px 20px 20px; }
+.cn-stats div { background: #25323F; padding: 8px 12px; }
+.cn-stats span { display: block; font-size: 11px; color: #9AA6B2; text-transform: uppercase; }
+.cn-stats b { font-weight: normal; font-size: 15px; }
+.cn-blue { color: #6CC4F0; }
+.cn-green { color: #5EE68A; }
 
 /* Rail networks */
 .network { padding-top: 60px; padding-bottom: 60px; }
@@ -383,6 +416,7 @@ footer { background: var(--bg-deep); padding: 56px 0 28px; font-size: 15px; colo
   nav.open ul a { display: block; padding: 12px 0; font-size: 17px; border-bottom: 1px solid var(--line); }
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .ministers { grid-template-columns: 1fr; }
+  .mod { grid-template-columns: 1fr; gap: 40px; }
   .foot-grid > :first-child { grid-column: span 2; }
 }
 @media (max-width: 520px) {
