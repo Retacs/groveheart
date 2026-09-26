@@ -19,8 +19,8 @@
 <link rel="icon" href="assets/emblem.png?v=100739d1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="stylesheet" href="assets/css/site.css?v=45b4caa5">
-<link rel="stylesheet" href="assets/css/home.css?v=7de20e43">
+<link rel="stylesheet" href="assets/css/site.css?v=56f28d6d">
+<link rel="stylesheet" href="assets/css/home.css?v=0c64c817">
 </head>
 <body class="intro">
 
@@ -52,7 +52,7 @@
   <div class="wrap">
     <div class="eyebrow rise">Kingdom of Groveheart · CivMC</div>
     <h1 class="rise">Groveheart</h1>
-    <p class="lead rise">A kingdom in the spruce woods of western Deluvia. Find a home, make friends.</p>
+    <p class="lead rise">A kingdom in the spruce woods of western Deluvia. Find a home and make friends.</p>
     <div class="btns rise">
       <a class="btn btn-cream" href="https://discord.gg/m4mBRJGtxk">Join our Discord</a>
       <a class="btn btn-ghost" href="getting-started">Getting started</a>
@@ -66,48 +66,56 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker">Your path</div>
-      <h2>How to citizen</h2>
-      <p>Your road through Groveheart, from the first night to a house of your own.</p>
+      <h2>How to become a citizen</h2>
+      <p>From your first night in Groveheart to a house of your own.</p>
     </div>
 
-    <ol class="banners reveal" aria-label="Your path, step by step">
-      <li>
-        <div class="flag" aria-hidden="true">
-          <svg class="cord" viewBox="0 0 206 30"><path d="M 12 30 L 103 6 L 194 30"/><circle cx="103" cy="6" r="4"/></svg>
-          <div class="stick"></div>
-          <div class="swing"><div class="cloth"><div class="trim"></div><img class="item icon" src="assets/items/ender_pearl.png?v=2e05a961" alt=""></div></div>
-        </div>
+    <div class="road reveal" id="road">
+      <svg class="trail" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="trail-grad" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#D2B074" stop-opacity=".25"/>
+            <stop offset=".5" stop-color="#D2B074"/>
+            <stop offset="1" stop-color="#F4EBCF"/>
+          </linearGradient>
+          <mask id="rail-mask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="600">
+            <path d="M 125 235 C 250 235, 250 165, 375 165 C 500 165, 500 235, 625 235 C 750 235, 750 165, 875 165" stroke="#fff" stroke-width="13" fill="none"/>
+            <path d="M 125 235 C 250 235, 250 165, 375 165 C 500 165, 500 235, 625 235 C 750 235, 750 165, 875 165" stroke="#000" stroke-width="8" fill="none"/>
+          </mask>
+          <mask id="draw-mask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="600">
+            <path class="draw" pathLength="1" d="M 125 235 C 250 235, 250 165, 375 165 C 500 165, 500 235, 625 235 C 750 235, 750 165, 875 165"/>
+          </mask>
+        </defs>
+        <path id="trail-path" class="guide" d="M 125 235 C 250 235, 250 165, 375 165 C 500 165, 500 235, 625 235 C 750 235, 750 165, 875 165"/>
+        <path class="ghost" d="M 125 235 C 250 235, 250 165, 375 165 C 500 165, 500 235, 625 235 C 750 235, 750 165, 875 165"/>
+        <g mask="url(#draw-mask)">
+          <path class="ties" d="M 125 235 C 250 235, 250 165, 375 165 C 500 165, 500 235, 625 235 C 750 235, 750 165, 875 165"/>
+          <path class="rails" mask="url(#rail-mask)" d="M 125 235 C 250 235, 250 165, 375 165 C 500 165, 500 235, 625 235 C 750 235, 750 165, 875 165"/>
+        </g>
+        <g class="spark" id="minecart"></g>
+      </svg>
+
+      <div class="stop" style="left:12.5%;top:calc(235/400*100%)">
+        <div class="node"><img class="item icon bob" src="assets/items/ender_pearl.png?v=2e05a961" alt=""></div>
         <h3>Arrive</h3>
-        <p>Use your free teleport to a Groveheart contact, or ride to the station.</p>
-      </li>
-      <li>
-        <div class="flag" aria-hidden="true">
-          <svg class="cord" viewBox="0 0 206 30"><path d="M 12 30 L 103 6 L 194 30"/><circle cx="103" cy="6" r="4"/></svg>
-          <div class="stick"></div>
-          <div class="swing"><div class="cloth"><div class="trim"></div><span class="icon" data-pix="bed"></span></div></div>
-        </div>
+        <p>Use your free teleport to reach one of our members, or travel to the station yourself.</p>
+      </div>
+      <div class="stop" style="left:37.5%;top:calc(165/400*100%)">
+        <div class="node"><span class="icon bob" data-pix="bed"></span></div>
         <h3>Move in</h3>
-        <p>Your own small apartment, from day one.</p>
-      </li>
-      <li>
-        <div class="flag" aria-hidden="true">
-          <svg class="cord" viewBox="0 0 206 30"><path d="M 12 30 L 103 6 L 194 30"/><circle cx="103" cy="6" r="4"/></svg>
-          <div class="stick"></div>
-          <div class="swing"><div class="cloth"><div class="trim"></div><span class="icon" data-pix="letter"></span></div></div>
-        </div>
+        <p>Get your own small apartment from day one.</p>
+      </div>
+      <div class="stop" style="left:62.5%;top:calc(235/400*100%)">
+        <div class="node"><span class="icon bob" data-pix="letter"></span></div>
         <h3>Citizen test</h3>
-        <p>After 1&ndash;2 weeks of play, a team member reaches out in your ticket.</p>
-      </li>
-      <li>
-        <div class="flag" aria-hidden="true">
-          <svg class="cord" viewBox="0 0 206 30"><path d="M 12 30 L 103 6 L 194 30"/><circle cx="103" cy="6" r="4"/></svg>
-          <div class="stick"></div>
-          <div class="swing"><div class="cloth"><div class="trim"></div><span class="icon" data-pix="hut"></span></div></div>
-        </div>
+        <p>After one or two weeks of play, a team member will contact you in your ticket.</p>
+      </div>
+      <div class="stop" style="left:87.5%;top:calc(165/400*100%)">
+        <div class="node"><span class="icon bob" data-pix="hut"></span></div>
         <h3>Your house</h3>
         <p>Pass the test and pick a ready-built house of your own.</p>
-      </li>
-    </ol>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -127,7 +135,7 @@
     <div class="reveal" style="--d:.15s;display:flex;flex-direction:column;align-items:center">
       <div class="kicker">Our way</div>
       <h2>We speak for the trees</h2>
-      <p class="muted">King Gidein is our very own Lorax, in looks and in mindset. Groveheart is built around the spruce woods, not in place of them, and every citizen helps keep it that way.</p>
+      <p class="muted">King Gidein is our very own Lorax, in looks and in spirit. Groveheart is built among the spruce woods, not in place of them, and every citizen helps keep it that way.</p>
       <div class="law">
         <button class="toast" type="button" aria-expanded="false" aria-controls="law-more">
           <img class="item" src="assets/items/iron_axe.png?v=aba84ee1" alt="">
@@ -136,7 +144,7 @@
         </button>
         <div class="tooltip" id="law-more">
           <div class="tt-title">Law of the Woods</div>
-          <p>Every tree in Groveheart is protected. Building, digging or clearing anywhere outside your own home or shop needs permission from the King or one of his appointees, and that includes trees.</p>
+          <p>Every tree in Groveheart is protected. Building, digging or clearing anywhere outside your own home or shop requires permission from the King or one of his appointees, and that includes cutting down trees.</p>
           <p class="tt-foot">Groveheart Charter, Article III</p>
         </div>
       </div>
@@ -155,13 +163,13 @@
     <div class="feature reveal" style="--d:.12s">
       <div class="stage" style="--glow:rgba(232,185,35,.5)"><div class="frame"><span class="picon" data-pix="ballot"></span></div></div>
       <h3>Your voice matters</h3>
-      <p>Run for Prime Minister every 45 days and govern with the cabinet.</p>
+      <p>Elections are held every 45 days, and any active citizen can run for Prime Minister.</p>
       <a class="link" href="about#government">How we're governed</a>
     </div>
     <div class="feature reveal" style="--d:.24s">
       <div class="stage" style="--glow:rgba(210,215,225,.45)"><div class="frame"><img class="item" src="assets/items/rail.png?v=41440f07" alt=""></div></div>
       <h3>Connected by rail</h3>
-      <p>Three big rail networks and direct lines to our neighbours, all from the central station.</p>
+      <p>Three major rail networks and direct lines to our neighbours, all from our central station.</p>
       <a class="link" href="railways">See all lines</a>
     </div>
   </div>
@@ -234,6 +242,6 @@
 
 <script src="assets/js/site.js?v=0e5eb4f1"></script>
 <script src="assets/js/gallery.js?v=25558426"></script>
-<script src="assets/js/home.js?v=163aeceb"></script>
+<script src="assets/js/home.js?v=8bd251bc"></script>
 </body>
 </html>

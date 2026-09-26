@@ -1,3 +1,17 @@
+// Minecart on the roadmap rails (top view, using the minecart's floor texture)
+{
+  const scale = 1.05;
+  document.getElementById("minecart").innerHTML = `
+    <g>
+      <g transform="translate(${-10 * scale} ${-8 * scale})">
+        <rect x="-1.5" y="-1.5" width="${20 * scale + 3}" height="${16 * scale + 3}" fill="#262626"/>
+        <image href="assets/items/minecart_floor.png" width="${20 * scale}" height="${16 * scale}"
+               preserveAspectRatio="none" style="image-rendering: pixelated"/>
+      </g>
+      <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#trail-path"/></animateMotion>
+    </g>`;
+}
+
 // Spruce trees next to the King's head. Each number is one row of leaf blocks, 0 is a log.
 {
   const shapes = {

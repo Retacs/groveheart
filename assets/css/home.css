@@ -75,32 +75,42 @@
 @keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
-/* Roadmap: one small banner per step, hung like the royal banner in the hero. They unfurl one
-   after another; the last one is gold. */
-.banners { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
-.banners li { --i: 0; }
-.banners li:nth-child(2) { --i: 1; }
-.banners li:nth-child(3) { --i: 2; }
-.banners li:nth-child(4) { --i: 3; }
-.banners .flag { width: 136px; }
-.banners .cord { height: 20px; }
-.banners .stick { height: 8px; }
-.banners .stick::before, .banners .stick::after { width: 10px; height: 14px; }
-.banners .swing { animation-delay: calc(var(--i) * -1.7s); }
-.banners .cloth { width: 116px; padding: 44px 0 86px; transform: scaleY(0); animation: none; }
-.banners.shown .cloth {
-  animation: unfurl 1s calc(var(--i) * .3s) cubic-bezier(.2,.8,.2,1) both, tails 4.5s calc(var(--i) * .3s + 1s) ease-in-out infinite;
+/* Roadmap */
+.road { position: relative; height: 420px; }
+.road svg.trail { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.trail path { fill: none; vector-effect: non-scaling-stroke; }
+.trail .guide { stroke: none; }
+.trail .ghost { stroke: rgba(210,176,116,.06); stroke-width: 30; stroke-linecap: round; }
+.trail .ties { stroke: #6B4A26; stroke-width: 18; stroke-dasharray: 4 7; }
+.trail .rails { stroke: #B4B4B4; stroke-width: 13; }
+/* The line that reveals the rails. It scales with the drawing (no vector-effect), otherwise
+   browsers measure the dash in screen pixels and it stops short of the last stop on wide screens. */
+.trail .draw { vector-effect: none; stroke: #fff; stroke-width: 20; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s cubic-bezier(.6,0,.3,1); }
+.road.shown .trail .draw { stroke-dashoffset: 0; }
+.trail .spark { opacity: 0; transition: opacity .6s 2.4s; }
+.road.shown .trail .spark { opacity: 1; }
+.stop { position: absolute; width: 240px; transform: translate(-50%, -40px); text-align: center; opacity: 0; transition: opacity .6s, transform .6s; }
+.road.shown .stop { opacity: 1; transform: translate(-50%, -48px); }
+.road.shown .stop:nth-of-type(2) { transition-delay: .55s; }
+.road.shown .stop:nth-of-type(3) { transition-delay: 1.2s; }
+.road.shown .stop:nth-of-type(4) { transition-delay: 1.85s; }
+.road { counter-reset: step; }
+.stop { counter-increment: step; }
+.stop .node {
+  margin: 0 auto 18px; background: #22382B; border-color: #13221A #43644F #43644F #13221A;
+  box-shadow: 0 0 0 2px #0A120E, 0 0 0 4px rgba(210,176,116,.28), 0 14px 28px rgba(0,0,0,.45);
 }
-.banners .cloth .trim::after { top: 12px; }
-.banners .cloth .icon { position: relative; display: block; width: 64px; height: 64px; margin: 0 auto; filter: drop-shadow(3px 3px 0 rgba(0,0,0,.35)); }
-.banners li:last-child .cloth {
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.25), transparent 18%, transparent 82%, rgba(0,0,0,.25)),
-    linear-gradient(#C99A3E, #8A6424);
+.stop:last-of-type .node { box-shadow: 0 0 0 2px #0A120E, 0 0 0 4px #D2B074, 0 14px 28px rgba(0,0,0,.45); }
+/* Step number in the corner, like an item count */
+.stop .node::after {
+  content: counter(step); position: absolute; right: 4px; bottom: 0;
+  font: 18px Monocraft, monospace; color: #fff; text-shadow: 2px 2px 0 #3F3F3F;
 }
-.banners li:last-child .trim { background: linear-gradient(#F1D48C 0 4px, #6B4E1C 4px); }
-.banners h3 { font-size: 20px; margin: 26px 0 8px; }
-.banners p { color: var(--muted); font-size: 15.5px; max-width: 240px; margin: 0 auto; }
+.stop:nth-of-type(2) .bob { animation-delay: -.8s; }
+.stop:nth-of-type(3) .bob { animation-delay: -1.6s; }
+.stop:nth-of-type(4) .bob { animation-delay: -2.4s; }
+.stop h3 { font-size: 20px; margin: 0 0 8px; }
+.stop p { color: var(--muted); font-size: 15px; max-width: 220px; margin: 0 auto; }
 
 /* Lorax */
 .lorax-sec { overflow: visible; overflow-x: clip; z-index: 2; }
@@ -193,13 +203,26 @@
   .gallery .map-tile:nth-child(n+4) { display: none; }
   .spruce { --b: 16px; }
   .spruce.far { display: none; }
-  .banners { grid-template-columns: 1fr 1fr; gap: 48px 24px; }
+}
+@media (max-width: 760px) {
+  .road { height: auto; padding-left: 92px; }
+  .road svg.trail { display: none; }
+  .road::before { content: ""; position: absolute; left: 35px; top: 30px; bottom: 30px; width: 2px; background: linear-gradient(rgba(210,176,116,.2), #D2B074, rgba(244,235,207,.8)); }
+  .stop { position: relative; left: auto !important; top: auto !important; width: auto; transform: none !important; text-align: left; opacity: 1; margin-bottom: 40px; min-height: 72px; }
+  .stop:last-child { margin-bottom: 0; }
+  .stop p { margin: 0; max-width: none; }
+  .stop .node { position: absolute; left: -92px; top: 0; width: 72px; height: 72px; margin: 0; }
+  .stop .node .icon { width: 40px; height: 40px; }
+  .stop .node::after { font-size: 14px; right: 2px; }
 }
 @media (max-width: 560px) {
   .letter { margin: 0 10px; }
   .letter h2 { white-space: normal; }
 }
+@media (prefers-reduced-motion: reduce) and (min-width: 761px) {
+  .stop { opacity: 1 !important; transform: translate(-50%, -48px) !important; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .banners .cloth { transform: none; }
+  .trail .draw { stroke-dashoffset: 0; }
   .shown .flap { transform: scaleY(-1); z-index: 0; }
 }
