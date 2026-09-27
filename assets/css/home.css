@@ -76,7 +76,7 @@
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 /* Roadmap */
-.road { position: relative; height: 420px; }
+.road { position: relative; height: 420px; margin-bottom: 90px; }
 .road svg.trail { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .trail path { fill: none; vector-effect: non-scaling-stroke; }
 .trail .guide { stroke: none; }
@@ -205,7 +205,7 @@
   .spruce.far { display: none; }
 }
 @media (max-width: 760px) {
-  .road { height: auto; padding-left: 92px; }
+  .road { height: auto; padding-left: 92px; margin-bottom: 0; }
   .road svg.trail { display: none; }
   .road::before { content: ""; position: absolute; left: 35px; top: 30px; bottom: 30px; width: 2px; background: linear-gradient(rgba(210,176,116,.2), #D2B074, rgba(244,235,207,.8)); }
   .stop { position: relative; left: auto !important; top: auto !important; width: auto; transform: none !important; text-align: left; opacity: 1; margin-bottom: 40px; min-height: 72px; }
