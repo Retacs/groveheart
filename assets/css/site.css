@@ -231,6 +231,9 @@ section.tight { padding: 70px 0; }
 .icon-list > div { display: flex; gap: 16px; align-items: flex-start; }
 .icon-list h3 { font-size: 17px; margin-bottom: 6px; }
 .icon-list p { color: var(--muted); font-size: 16px; }
+/* Government extras: wide enough columns that each title stays on one line */
+.gov-extra { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.gov-extra h3 { font-size: 16px; white-space: nowrap; }
 
 /* Channel chips */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
