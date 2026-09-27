@@ -39,18 +39,16 @@
 }
 .stick::before { left: -10px; } .stick::after { right: -10px; }
 .flag .swing { transform-origin: top center; animation: swing 7s ease-in-out infinite; }
-/* The Groveheart banner as it hangs in game: green per pale, white pale, grey base, white roundel.
-   Drawn at the game's 20 x 40 pixels and scaled 7x. */
+/* The Groveheart banner as it hangs in game: green per pale, white pale, grey base, white roundel,
+   in Minecraft's own dye colours (green #5E7C16, gray #474F52). Drawn at the game's 20 x 40 pixels and scaled 7x. */
 .cloth {
   position: relative; width: 140px; height: 280px; margin: 0 auto; transform-origin: top center;
   background:
-    linear-gradient(90deg, rgba(0,0,0,.22), transparent 18%, transparent 82%, rgba(0,0,0,.22)),
-    linear-gradient(rgba(0,0,0,.14), transparent 12%, transparent 85%, rgba(0,0,0,.2)),
-    url(../banner.svg) 0 0/100% 100%;
+    linear-gradient(90deg, rgba(0,0,0,.12), transparent 12%, transparent 88%, rgba(0,0,0,.12)),
+    linear-gradient(rgba(0,0,0,.1), transparent 8%, transparent 90%, rgba(0,0,0,.12)),
+    url(../banner.svg?v=3) 0 0/100% 100%;
   box-shadow: 0 16px 30px rgba(0,0,0,.35);
 }
-/* The emblem sits in the white roundel (banner rows 14-25, centred on row 20) */
-.cloth .crest { position: absolute; left: 32px; top: 102px; width: 76px; height: 76px; clip-path: circle(46%); }
 .cloth::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(100deg, transparent 35%, rgba(255,255,255,.10) 48%, transparent 62%) 0 0/300% 100%;
