@@ -24,11 +24,12 @@ locally with the same links, run `python3 tools/serve.py` and open http://localh
 The site can switch to a seasonal look on set dates. The calendar is the `SEASONS` list at the
 top of `assets/js/theme.js`, for example `{ theme: "autumn", from: "09-22", to: "11-14" }`
 (month-day, both days included; a range can run over the new year). Events such as Halloween go
-above the seasons and can build on one with `base`. The styles for a theme go in
+above the seasons and can build on one with `base`. Easter moves every year, so its dates are
+worked out from Easter Sunday. The styles for a theme go in
 `assets/css/themes.css` under `[data-theme~="<name>"]`.
 
 To preview a theme on any day, open the site with `?theme=<name>`
-(`autumn`, `halloween`, `winter`, `christmas` or `newyear`). It stays on while you browse
+(`spring`, `easter`, `autumn`, `halloween`, `winter`, `christmas` or `newyear`). It stays on while you browse
 in that tab; `?theme=none` shows the normal look and `?theme=auto` goes back to the calendar.
 In the local preview (`tools/serve.py`) every page also gets a bar at the top to switch
 between them; it comes from `tools/theme-switcher.js` and is never part of the live site.

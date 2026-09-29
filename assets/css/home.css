@@ -142,6 +142,8 @@
   filter: drop-shadow(4px 4px 0 rgba(0,0,0,.45)) drop-shadow(0 0 8px var(--glow)) drop-shadow(0 0 22px var(--glow));
 }
 .feature:hover .stage .item, .feature:hover .stage .picon { transform: scale(1.08) rotate(-6deg); }
+/* The diamond sits low in its texture and casts its shadow down to the right, so it is nudged to look centred */
+.stage .gem { translate: -2px -4px; }
 .feature h3 { font-size: 21px; margin-bottom: 10px; }
 .feature p { color: var(--muted); margin-bottom: 18px; }
 
