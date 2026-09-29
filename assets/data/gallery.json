@@ -1,5 +1,9 @@
 [
  {
+  "src": "assets/gallery/00.jpg",
+  "thumb": "assets/gallery/00-thumb.jpg"
+ },
+ {
   "src": "assets/gallery/01.jpg",
   "thumb": "assets/gallery/01-thumb.jpg"
  },
