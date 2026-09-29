@@ -134,14 +134,14 @@ section.tight { padding: 70px 0; }
 .canopy i { position: absolute; top: 0; width: 48px; }
 .canopy i::before, .canopy i::after { content: ""; position: absolute; inset: 0; }
 .canopy i::before {
-  background: url(../blocks/spruce_leaves.png) 24px 21px/48px, #34543A; background-blend-mode: multiply;
+  background: url(../blocks/spruce_leaves.png) 24px 21px/48px, var(--leaf-back, #34543A); background-blend-mode: multiply;
   -webkit-mask: url(../blocks/spruce_leaves.png) 24px 21px/48px; mask: url(../blocks/spruce_leaves.png) 24px 21px/48px;
 }
 .canopy i::after {
   background:
     linear-gradient(rgba(6,14,9,.5), transparent 40px),
     linear-gradient(transparent calc(100% - 16px), rgba(255,222,160,.16)),
-    url(../blocks/spruce_leaves.png) 0 0/48px, #619961;
+    url(../blocks/spruce_leaves.png) 0 0/48px, var(--leaf, #619961);
   background-blend-mode: normal, normal, multiply;
   -webkit-mask: url(../blocks/spruce_leaves.png) 0 0/48px; mask: url(../blocks/spruce_leaves.png) 0 0/48px;
 }

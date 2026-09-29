@@ -108,6 +108,7 @@ for (const canopy of document.querySelectorAll(".canopy")) {
     const deep = height < 3 && random() < .3;
     const leaf = document.createElement("i");
     if (deep) leaf.className = "deep";
+    leaf.dataset.tone = Math.imul(i + 1, 2654435761) >>> 30; // colour variant, used by seasonal themes
     leaf.style.left = `${i * 48}px`;
     leaf.style.height = `${(height + (deep ? 1 : 0)) * 48}px`;
     canopy.append(leaf);

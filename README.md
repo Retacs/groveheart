@@ -19,6 +19,17 @@ locally with the same links, run `python3 tools/serve.py` and open http://localh
   [{ "src": "assets/gallery/capital.jpg", "caption": "The capital at sunset" }]
   ```
 
+## Seasonal themes
+
+The site can switch to a seasonal look on set dates. The calendar is the `SEASONS` list at the
+top of `assets/js/theme.js`, for example `{ theme: "autumn", from: "09-22", to: "11-14" }`
+(month-day, both days included; a range can run over the new year). Events such as Halloween go
+above the seasons and can build on one with `base`. The styles for a theme go in
+`assets/css/themes.css` under `[data-theme~="<name>"]`.
+
+To preview a theme on any day, open the site with `?theme=autumn` or `?theme=halloween`. It stays on while you browse
+in that tab; `?theme=none` shows the normal look and `?theme=auto` goes back to the calendar.
+
 ## Before committing
 
 Run `python3 tools/cache-bust.py`. It adds a version tag to every CSS, JS and image link,

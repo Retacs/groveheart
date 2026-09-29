@@ -1,0 +1,101 @@
+/* Seasonal themes. assets/js/theme.js sets <html data-theme="..."> from the calendar;
+   [data-theme~="x"] also matches when an event like Halloween is layered on a season. */
+
+/* ---------- Autumn: warm evening light with a touch of Halloween dusk ---------- */
+[data-theme~="autumn"] { --path: #DDA15A; }
+
+[data-theme~="autumn"] .hero,
+[data-theme~="autumn"] .page-hero {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 0%, rgba(232,140,60,.2), transparent 70%),
+    radial-gradient(ellipse 85% 55% at 50% 105%, rgba(96,44,110,.24), transparent 70%),
+    radial-gradient(ellipse 55% 60% at 50% 12%, rgba(120,170,130,.1), transparent 70%),
+    radial-gradient(ellipse 90% 90% at 50% 20%, #2F4631, #22372A 45%, #141F18 85%);
+}
+
+/* The leaf edges turn into mixed autumn foliage; the spruce trees stay green */
+[data-theme~="autumn"] .canopy i { --leaf: #F0913A; --leaf-back: #7A3A1A; }
+[data-theme~="autumn"] .canopy i[data-tone="1"] { --leaf: #E4643A; --leaf-back: #6A2618; }
+[data-theme~="autumn"] .canopy i[data-tone="2"] { --leaf: #F4C24C; --leaf-back: #7E4E1C; }
+[data-theme~="autumn"] .canopy i[data-tone="3"] { --leaf: #C98A3E; --leaf-back: #5A3418; }
+
+/* Falling leaves, behind the header content */
+.hero > .falling, .page-hero > .falling { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.falling span { position: absolute; top: -24px; opacity: .85; animation: leaf-fall var(--dur) linear var(--delay) infinite; }
+.falling svg { display: block; width: 15px; height: 18px; animation: leaf-sway 3.4s ease-in-out infinite alternate; }
+@keyframes leaf-fall { to { transform: translateY(900px); } }
+@keyframes leaf-sway { from { transform: translateX(-16px) rotate(-28deg); } to { transform: translateX(16px) rotate(24deg); } }
+
+/* Pumpkins on the bottom edge of the header (behind the fox on the home page) */
+.hero > .pumpkins, .page-hero > .pumpkins { position: absolute; left: 0; right: 0; bottom: 0; height: 48px; z-index: 1; pointer-events: none; }
+.pumpkins > img, .pumpkins > .lantern {
+  position: absolute; bottom: 0; width: 48px; height: 48px;
+  animation: pumpkin-drop .55s cubic-bezier(.3,1.5,.6,1) calc(.4s + var(--i) * .2s) both;
+}
+.pumpkins img { image-rendering: pixelated; filter: drop-shadow(0 6px 5px rgba(0,0,0,.45)); }
+.lantern img { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* The middle pumpkin lights up once, then keeps a soft glow */
+.lantern .lit { filter: drop-shadow(0 0 8px rgba(255,160,50,.45)) drop-shadow(0 6px 5px rgba(0,0,0,.45)); animation: pumpkin-light .7s ease-out 1.5s both; }
+.pumpkins:not(.go) > *, .pumpkins:not(.go) .lit { animation-play-state: paused; }
+@keyframes pumpkin-drop { from { opacity: 0; transform: translateY(-70px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
+@keyframes pumpkin-light {
+  from { opacity: 0; }
+  35%  { opacity: 1; filter: brightness(1.5) drop-shadow(0 0 16px rgba(255,170,60,.9)); }
+  to   { opacity: 1; filter: drop-shadow(0 0 8px rgba(255,160,50,.45)) drop-shadow(0 6px 5px rgba(0,0,0,.45)); }
+}
+
+@media (max-width: 600px) {
+  .hero > .pumpkins, .page-hero > .pumpkins { height: 32px; }
+  .pumpkins > img, .pumpkins > .lantern { width: 32px; height: 32px; }
+  .pumpkins > .lantern { right: calc(7% + 35px) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .falling { display: none; }
+}
+
+/* ---------- Halloween (24 Oct to 7 Nov, on top of autumn): a darker night with a few spooky extras ---------- */
+[data-theme~="halloween"] .hero,
+[data-theme~="halloween"] .page-hero {
+  background:
+    radial-gradient(circle at 86% 14%, rgba(220,225,255,.1), transparent 20%),
+    radial-gradient(ellipse 90% 60% at 50% 105%, rgba(110,46,130,.36), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(232,140,60,.12), transparent 70%),
+    radial-gradient(ellipse 90% 90% at 50% 20%, #22342A, #192A21 45%, #0F1712 85%);
+}
+.hero > .night, .page-hero > .night { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.night img { image-rendering: pixelated; }
+.night .moon { position: absolute; top: 34px; right: 12%; width: 64px; height: 64px; opacity: .9; filter: drop-shadow(0 0 18px rgba(220,225,255,.25)); }
+.night .cobweb { position: absolute; top: 0; left: 0; width: 96px; height: 96px; opacity: .3; }
+.night .cobweb.right { left: auto; right: 0; transform: scaleX(-1); }
+
+/* The ghast drifts slowly across the sky, bobbing, with its tentacles swaying */
+.ghast { position: absolute; top: 16%; left: 0; opacity: .88; animation: ghast-drift 80s linear -32s infinite; }
+.ghast-body { animation: ghast-bob 4s ease-in-out infinite alternate; }
+.ghast img { display: block; width: 48px; height: 48px; }
+.tentacles { display: flex; justify-content: space-evenly; width: 48px; }
+.tentacles i { width: 6px; height: calc(var(--len) * 3px); background: #F0F0F0; box-shadow: inset -2px 0 0 #D6D6D6;
+               transform-origin: top; animation: tentacle 2.6s ease-in-out calc(var(--i) * -.5s) infinite alternate; }
+@keyframes ghast-drift { from { transform: translateX(105vw); } to { transform: translateX(-120px); } }
+@keyframes ghast-bob { from { transform: translateY(-8px); } to { transform: translateY(8px); } }
+@keyframes tentacle { from { transform: rotate(-8deg); } to { transform: rotate(8deg); } }
+
+/* Bats flutter across now and then */
+.bat { position: absolute; top: var(--top); left: 0; width: 27px; height: 12px; animation: bat-fly 26s linear var(--delay) infinite; }
+.bat svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: #150E1A; animation: flap .3s linear infinite; }
+.bat .down { animation-delay: -.15s; }
+@keyframes flap { 0%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes bat-fly {
+  0%   { transform: translate(-40px, 0); }
+  10%  { transform: translate(28vw, -22px); }
+  20%  { transform: translate(56vw, 10px); }
+  30%  { transform: translate(84vw, -16px); }
+  36%, 100% { transform: translate(105vw, 0); }
+}
+
+@media (max-width: 600px) {
+  .night .moon { top: 78px; right: 5%; }
+  .night .cobweb { width: 64px; height: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ghast, .bat { display: none; }
+}
