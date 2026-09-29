@@ -23,29 +23,47 @@
 .hero > .falling, .page-hero > .falling { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .falling span { position: absolute; top: -24px; opacity: .85; animation: leaf-fall var(--dur) linear var(--delay) infinite; }
 .falling svg { display: block; width: 15px; height: 18px; animation: leaf-sway 3.4s ease-in-out infinite alternate; }
+.falling.snow svg { width: 5px; height: 5px; animation-duration: 4.5s; }
+.falling.snow span:nth-child(even) svg { width: 9px; height: 9px; }
 @keyframes leaf-fall { to { transform: translateY(900px); } }
 @keyframes leaf-sway { from { transform: translateX(-16px) rotate(-28deg); } to { transform: translateX(16px) rotate(24deg); } }
 
-/* Pumpkins on the bottom edge of the header (behind the fox on the home page) */
-.hero > .pumpkins, .page-hero > .pumpkins { position: absolute; left: 0; right: 0; bottom: 0; height: 48px; z-index: 1; pointer-events: none; }
-.pumpkins > img, .pumpkins > .lantern {
-  position: absolute; bottom: 0; width: 48px; height: 48px;
-  animation: pumpkin-drop .55s cubic-bezier(.3,1.5,.6,1) calc(.4s + var(--i) * .2s) both;
-}
-.pumpkins img { image-rendering: pixelated; filter: drop-shadow(0 6px 5px rgba(0,0,0,.45)); }
+/* Props along the bottom edge of a header (behind the fox on the home page). They drop in
+   one after another once the edge is on screen. */
+.hero > .ground, .page-hero > .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 48px; z-index: 1; pointer-events: none; }
+.ground > * { position: absolute; bottom: 0; animation: prop-drop .55s cubic-bezier(.3,1.5,.6,1) calc(.4s + var(--i, 0) * .2s) both; }
+.ground:not(.go) > *, .ground:not(.go) .lit { animation-play-state: paused; }
+.ground img { image-rendering: pixelated; filter: drop-shadow(0 6px 5px rgba(0,0,0,.45)); }
+@keyframes prop-drop { from { opacity: 0; transform: translateY(-70px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
+
+/* Autumn pumpkins; the middle one lights up once, then keeps a soft glow */
+.pumpkins > img, .pumpkins > .lantern { width: 48px; height: 48px; }
 .lantern img { position: absolute; inset: 0; width: 100%; height: 100%; }
-/* The middle pumpkin lights up once, then keeps a soft glow */
 .lantern .lit { filter: drop-shadow(0 0 8px rgba(255,160,50,.45)) drop-shadow(0 6px 5px rgba(0,0,0,.45)); animation: pumpkin-light .7s ease-out 1.5s both; }
-.pumpkins:not(.go) > *, .pumpkins:not(.go) .lit { animation-play-state: paused; }
-@keyframes pumpkin-drop { from { opacity: 0; transform: translateY(-70px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
 @keyframes pumpkin-light {
   from { opacity: 0; }
   35%  { opacity: 1; filter: brightness(1.5) drop-shadow(0 0 16px rgba(255,170,60,.9)); }
   to   { opacity: 1; filter: drop-shadow(0 0 8px rgba(255,160,50,.45)) drop-shadow(0 6px 5px rgba(0,0,0,.45)); }
 }
 
+/* Touches further down the page: on the book pages, the invitation and the footer,
+   and a small ornament on both sides of each section title */
+[data-theme] .book, [data-theme] footer { position: relative; }
+.deco { position: absolute; inset: 0; pointer-events: none; }
+.ornament { display: inline-block; margin: 0 .7em; vertical-align: -1px; }
+.ornament svg { display: block; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.4)); }
+.ornament:last-child svg { transform: scaleX(-1); }
+.book .ornament svg { filter: brightness(.8) saturate(1.3); }
+
+/* Leaves that have settled on the book pages and along the footer */
+.fallen-leaves span { position: absolute; }
+.fallen-leaves svg { display: block; width: 20px; height: 24px; filter: drop-shadow(1px 2px 1px rgba(0,0,0,.3)); }
+footer > .fallen-leaves svg { width: 15px; height: 18px; }
+
 @media (max-width: 600px) {
-  .hero > .pumpkins, .page-hero > .pumpkins { height: 32px; }
+  .ornament { margin: 0 .4em; }
+  .book .ornament { display: none; }
+  .hero > .ground, .page-hero > .ground { height: 32px; }
   .pumpkins > img, .pumpkins > .lantern { width: 32px; height: 32px; }
   .pumpkins > .lantern { right: calc(7% + 35px) !important; }
 }
@@ -92,10 +110,110 @@
   36%, 100% { transform: translate(105vw, 0); }
 }
 
+/* A cobweb in the corner of each book page, and a spider going up and down on its thread */
+.web img { position: absolute; top: -40px; right: -40px; width: 80px; height: 80px; image-rendering: pixelated; filter: brightness(.25); opacity: .4; }
+.web .spider { position: absolute; top: -8px; right: -18px; width: 1px; height: 64px; background: rgba(30,26,34,.6); animation: spider 3.8s ease-in-out infinite alternate; }
+.web .spider svg { position: absolute; left: -16px; bottom: -18px; }
+@keyframes spider { from { height: 52px; } to { height: 78px; } }
+
 @media (max-width: 600px) {
   .night .moon { top: 78px; right: 5%; }
   .night .cobweb { width: 64px; height: 64px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ghast, .bat { display: none; }
+  .web .spider { animation: none; }
+}
+
+/* ---------- Winter (from 15 Nov): snow, frosted leaves, snowy spruces and a snow golem ---------- */
+[data-theme~="winter"] .hero,
+[data-theme~="winter"] .page-hero {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(170,200,255,.14), transparent 70%),
+    radial-gradient(ellipse 55% 60% at 50% 12%, rgba(160,200,190,.08), transparent 70%),
+    radial-gradient(ellipse 90% 90% at 50% 20%, #21403C, #183330 45%, #0E1C1A 85%);
+}
+[data-theme~="winter"] .canopy i { --leaf: #93B5AC; --leaf-back: #3F5C57; }
+[data-theme~="winter"] .canopy i::after {
+  background:
+    linear-gradient(#EAF1FA 0 6px, transparent 0),
+    linear-gradient(transparent calc(100% - 16px), rgba(255,255,255,.12)),
+    url(../blocks/spruce_leaves.png) 0 0/48px, var(--leaf);
+  background-blend-mode: normal, normal, multiply;
+}
+/* Snow resting on every tier of the spruces */
+[data-theme~="winter"] .spruce i::after {
+  background: linear-gradient(#EEF4FF 0 calc(var(--b) / 5), transparent 0), url(../blocks/spruce_leaves.png) 0 0/var(--b), #619961;
+  background-blend-mode: normal, multiply;
+}
+.snow-layer {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 12px; z-index: 1; pointer-events: none;
+  background: url(../blocks/snow.png) 0 0/48px; image-rendering: pixelated; box-shadow: inset 0 2px 0 rgba(255,255,255,.5);
+}
+.snow-golem { --u: 1px; width: calc(48 * var(--u)); height: calc(120 * var(--u)); filter: drop-shadow(0 6px 5px rgba(0,0,0,.45)); }
+.snow-golem span { position: absolute; left: 50%; background: url(../blocks/snow.png) 0 0/100%; image-rendering: pixelated; transform: translateX(-50%); box-shadow: inset -3px -3px 0 rgba(120,150,190,.25); }
+.snow-golem .lower { bottom: 0; width: calc(48 * var(--u)); height: calc(48 * var(--u)); }
+.snow-golem .upper { bottom: calc(46 * var(--u)); width: calc(40 * var(--u)); height: calc(40 * var(--u)); }
+.snow-golem .head { position: absolute; left: 50%; bottom: calc(84 * var(--u)); width: calc(32 * var(--u)); height: calc(32 * var(--u)); transform: translateX(-50%); filter: none; }
+.snow-golem .arm { position: absolute; bottom: calc(66 * var(--u)); width: calc(4 * var(--u)); height: calc(30 * var(--u)); background: #6B4A26; box-shadow: inset calc(-1 * var(--u)) 0 0 #4A3218; transform-origin: bottom; }
+.snow-golem .arm.left { left: calc(2 * var(--u)); transform: rotate(-55deg); }
+.snow-golem .arm.right { right: calc(2 * var(--u)); transform: rotate(55deg); }
+/* Three pieces of coal as buttons */
+.snow-golem .upper::before {
+  content: ""; position: absolute; left: 50%; top: calc(7 * var(--u)); width: calc(6 * var(--u)); height: calc(6 * var(--u));
+  margin-left: calc(-3 * var(--u)); background: #2A292D;
+  box-shadow: 0 calc(10 * var(--u)) #2A292D, 0 calc(20 * var(--u)) #2A292D;
+}
+
+/* The fox's paw prints (set in home.js), fading after a while */
+.paw { position: absolute; bottom: 2px; width: 5px; height: 3px; background: rgba(70,95,135,.5); box-shadow: 0 1px 0 rgba(255,255,255,.55); animation: paw-fade 10s ease-in forwards; }
+.paw.far { bottom: 6px; }
+@keyframes paw-fade { to { opacity: 0; } }
+
+/* Snow on top of the book pages, and a snow layer along the top of the footer */
+.book > .snowcap { inset: -46px -44px auto; height: 16px; filter: drop-shadow(0 2px 1px rgba(0,0,0,.25)); }
+footer > .snow-layer { inset: -6px 0 auto; height: 16px; background: none; box-shadow: none; }
+.snowcap i, footer > .snow-layer i {
+  position: absolute; inset: 0; image-rendering: pixelated;
+  background: linear-gradient(transparent calc(100% - 3px), rgba(120,150,195,.5) 0), url(../blocks/snow.png) 0 0/24px;
+}
+
+/* ---------- Christmas (18 to 27 Dec, on top of winter) ---------- */
+.lights {
+  position: absolute; left: 0; right: 0; top: 0; height: 34px; z-index: 1; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='34' shape-rendering='crispEdges'%3E%3Cpath d='M0 3 Q20 16 40 3 Q60 16 80 3 Q100 16 120 3 Q140 16 160 3' fill='none' stroke='%231E2420' stroke-width='2' shape-rendering='auto'/%3E%3Crect x='18' y='9' width='4' height='3' fill='%235A5F5B'/%3E%3Crect x='17' y='12' width='6' height='8' fill='%23E0514A'/%3E%3Crect x='18' y='13' width='2' height='3' fill='%23FFFFFF' fill-opacity='.55'/%3E%3Crect x='58' y='9' width='4' height='3' fill='%235A5F5B'/%3E%3Crect x='57' y='12' width='6' height='8' fill='%23F0C040'/%3E%3Crect x='58' y='13' width='2' height='3' fill='%23FFFFFF' fill-opacity='.55'/%3E%3Crect x='98' y='9' width='4' height='3' fill='%235A5F5B'/%3E%3Crect x='97' y='12' width='6' height='8' fill='%2358B6E0'/%3E%3Crect x='98' y='13' width='2' height='3' fill='%23FFFFFF' fill-opacity='.55'/%3E%3Crect x='138' y='9' width='4' height='3' fill='%235A5F5B'/%3E%3Crect x='137' y='12' width='6' height='8' fill='%237ACB5B'/%3E%3Crect x='138' y='13' width='2' height='3' fill='%23FFFFFF' fill-opacity='.55'/%3E%3C/svg%3E") 0 0/160px 34px repeat-x;
+  filter: drop-shadow(0 2px 6px rgba(255,220,150,.45)); animation: lights-glow 3.2s ease-in-out infinite alternate;
+}
+@keyframes lights-glow { from { opacity: .8; } to { opacity: 1; } }
+.presents > img { width: 42px; height: 45px; }
+.tree-star svg { display: block; width: calc(var(--b) * 1.1); height: calc(var(--b) * 1.1); margin-bottom: calc(var(--b) / -4); filter: drop-shadow(0 0 6px rgba(244,197,66,.7)); }
+.bauble { position: absolute; z-index: 2; width: calc(var(--b) / 4); height: calc(var(--b) / 4); background: var(--c); box-shadow: 0 0 5px var(--c); }
+.hat-wrap { position: relative; display: block; }
+.santa-hat { position: absolute; left: 50%; bottom: calc(100% - 26px); width: 138px; height: 104px; transform: translateX(-38%) rotate(-10deg); filter: drop-shadow(0 4px 4px rgba(0,0,0,.35)); }
+[data-theme~="christmas"] .grove .bob { gap: 92px !important; }
+/* Holly on the book pages and next to the seal of the invitation */
+.holly svg { position: absolute; filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35)); }
+.book > .holly svg { top: -46px; left: -44px; transform: rotate(-14deg); }
+.envelope > .holly { z-index: 6; }
+.envelope > .holly svg { left: calc(50% - 82px); top: calc(57% - 58px); transform: rotate(-16deg); }
+
+/* ---------- New Year (28 Dec to 7 Jan, on top of winter): soft pixel fireworks ---------- */
+.hero > .fireworks, .page-hero > .fireworks { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.fireworks span { position: absolute; width: 150px; height: 150px; margin: -75px 0 0 -75px; opacity: 0; filter: drop-shadow(0 0 6px var(--c)); animation: burst 7s ease-out var(--delay) infinite; }
+.fireworks svg { display: block; width: 100%; height: 100%; }
+.rocket img { position: absolute; top: -60px; left: -46px; width: 64px; height: 64px; image-rendering: pixelated; transform: rotate(-8deg); filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35)); }
+@keyframes burst {
+  0%   { opacity: 0; transform: scale(.15); }
+  4%   { opacity: 1; transform: scale(.35); }
+  22%  { opacity: 1; transform: scale(1); }
+  40%  { opacity: 0; transform: scale(1.12) translateY(14px); }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .snow-golem { --u: .7px; }
+  .presents > img { width: 28px; height: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fireworks { display: none; }
 }

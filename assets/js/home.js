@@ -81,6 +81,20 @@
   let nextSnack = 5;
   let last = performance.now();
 
+  // In the winter themes the fox leaves a line of paw prints in the snow, which slowly fade
+  const snowy = document.documentElement.matches('[data-theme~="winter"]');
+  let lastPrint = x;
+  let far = false;
+  const leavePrint = () => {
+    const print = document.createElement("i");
+    print.className = far ? "paw far" : "paw";
+    print.style.left = `${Math.round(x + direction * 11)}px`;
+    print.addEventListener("animationend", () => print.remove());
+    stage.prepend(print);
+    lastPrint = x;
+    far = !far;
+  };
+
   const draw = () => {
     fox.style.transform = `translateX(${x.toFixed(1)}px)`;
     yaw.style.transform = `rotateX(-8deg) rotateY(${angle.toFixed(1)}deg)`;
@@ -124,6 +138,7 @@
       }
     }
 
+    if (snowy && Math.abs(x - lastPrint) >= 13) leavePrint();
     draw();
     requestAnimationFrame(step);
   };

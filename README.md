@@ -27,8 +27,11 @@ top of `assets/js/theme.js`, for example `{ theme: "autumn", from: "09-22", to: 
 above the seasons and can build on one with `base`. The styles for a theme go in
 `assets/css/themes.css` under `[data-theme~="<name>"]`.
 
-To preview a theme on any day, open the site with `?theme=autumn` or `?theme=halloween`. It stays on while you browse
+To preview a theme on any day, open the site with `?theme=<name>`
+(`autumn`, `halloween`, `winter`, `christmas` or `newyear`). It stays on while you browse
 in that tab; `?theme=none` shows the normal look and `?theme=auto` goes back to the calendar.
+In the local preview (`tools/serve.py`) every page also gets a bar at the top to switch
+between them; it comes from `tools/theme-switcher.js` and is never part of the live site.
 
 ## Before committing
 

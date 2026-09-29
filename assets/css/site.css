@@ -178,9 +178,11 @@ section.tight { padding: 70px 0; }
 .map-tile:hover { transform: scale(1.015); }
 .map-tile img { width: 100%; height: 100%; object-fit: cover; image-rendering: auto; display: block; }
 
-/* Book page */
+/* Book page. The texture is drawn at exactly 3x with hard pixels: the rings on the left and
+   the page edges on the right repeat, the paper in the middle is one flat colour. */
 .book {
-  color: #2B2014; border: 45px solid transparent; border-image: url(../blocks/book_page.png) 15 fill stretch; padding: 0 4px;
+  color: #2B2014; border: 45px solid transparent; padding: 0 4px 18px; image-rendering: pixelated;
+  border-image: url(../blocks/book_page.png?v=2) 13 30 24 15 fill / 39px 90px 72px 45px stretch round;
 }
 .book h2, .book h3 { color: #1F3A25; text-shadow: 3px 3px 0 #E3D7BA; }
 .book h3 { text-shadow: 2px 2px 0 #E3D7BA; }
